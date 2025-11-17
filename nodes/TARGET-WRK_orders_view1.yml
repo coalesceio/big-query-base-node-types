@@ -1,6 +1,6 @@
 fileVersion: 1
 id: 61438949-2f91-4606-b6dc-5de2216a4165
-name: WRK_orders_view
+name: WRK_orders_view1
 operation:
   config:
     groupByAll: false
@@ -164,9 +164,9 @@ operation:
           joinCondition: |-
             FROM {{ ref('SOURCE', 'orders') }} `orders`
             order by `O_ORDERKEY` desc
-        name: WRK_orders_view
+        name: WRK_orders_view1
         noLinkRefs: []
-  name: WRK_orders_view
+  name: WRK_orders_view1
   overrideSQL: false
   schema: ""
   sqlType: "159"

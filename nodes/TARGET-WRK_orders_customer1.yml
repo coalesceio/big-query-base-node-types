@@ -1,6 +1,6 @@
 fileVersion: 1
 id: c44f78f2-2ca3-43b7-9297-50a43f93c658
-name: WRK_orders_customer
+name: WRK_orders_customer1
 operation:
   config:
     groupByAll: false
@@ -284,9 +284,9 @@ operation:
             FROM {{ ref('SOURCE', 'orders') }} `orders`
             INNER JOIN {{ ref('SOURCE', 'customer') }} `customer`
             ON `orders`.`O_CUSTKEY` = `customer`.`C_CUSTKEY`
-        name: WRK_orders_customer
+        name: WRK_orders_customer1
         noLinkRefs: []
-  name: WRK_orders_customer
+  name: WRK_orders_customer1
   overrideSQL: false
   schema: ""
   sqlType: "159"

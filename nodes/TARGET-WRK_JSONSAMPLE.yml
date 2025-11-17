@@ -82,7 +82,7 @@ operation:
   name: WRK_JSONSAMPLE
   overrideSQL: false
   schema: ""
-  sqlType: Stage
+  sqlType: "159"
   type: sql
   version: 1
 type: Node

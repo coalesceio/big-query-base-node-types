@@ -230,7 +230,7 @@ operation:
   name: DIM_nation_scd1
   overrideSQL: false
   schema: ""
-  sqlType: Dimension
+  sqlType: "161"
   type: sql
   version: 1
 type: Node

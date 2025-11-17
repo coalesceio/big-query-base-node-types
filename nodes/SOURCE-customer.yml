@@ -1,0 +1,152 @@
+fileVersion: 1
+id: 79db2e7d-146b-42a0-9e07-de853bfddc47
+name: customer
+operation:
+  database: ""
+  deployEnabled: true
+  description: ""
+  locationName: SOURCE
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3f96ad24-c16b-48c4-9ca0-22b1857b0fa6
+          stepCounter: 79db2e7d-146b-42a0-9e07-de853bfddc47
+        config: {}
+        dataType: INT64
+        defaultValue: "NULL"
+        description: ""
+        name: C_CUSTKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ec0cadc1-8fde-4d3e-87ff-504d440ccb4a
+          stepCounter: 79db2e7d-146b-42a0-9e07-de853bfddc47
+        config: {}
+        dataType: STRING
+        defaultValue: "NULL"
+        description: ""
+        name: C_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: dd51f8fa-14b2-4649-a635-8730140b5b99
+          stepCounter: 79db2e7d-146b-42a0-9e07-de853bfddc47
+        config: {}
+        dataType: STRING
+        defaultValue: "NULL"
+        description: ""
+        name: C_ADDRESS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 82a88d84-9541-4c2c-abfe-41e16f26ded9
+          stepCounter: 79db2e7d-146b-42a0-9e07-de853bfddc47
+        config: {}
+        dataType: INT64
+        defaultValue: "NULL"
+        description: ""
+        name: C_NATIONKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 36ece492-6d23-4c70-a88b-286d415405b7
+          stepCounter: 79db2e7d-146b-42a0-9e07-de853bfddc47
+        config: {}
+        dataType: STRING
+        defaultValue: "NULL"
+        description: ""
+        name: C_PHONE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5189a69f-bb86-44fe-901f-54a167aa800f
+          stepCounter: 79db2e7d-146b-42a0-9e07-de853bfddc47
+        config: {}
+        dataType: FLOAT64
+        defaultValue: "NULL"
+        description: ""
+        name: C_ACCTBAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d2b5e5b0-49e9-43a3-bce5-75e0db747ecc
+          stepCounter: 79db2e7d-146b-42a0-9e07-de853bfddc47
+        config: {}
+        dataType: STRING
+        defaultValue: "NULL"
+        description: ""
+        name: C_MKTSEGMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5d93ccb1-73c7-4a72-96ed-e3d955e2e712
+          stepCounter: 79db2e7d-146b-42a0-9e07-de853bfddc47
+        config: {}
+        dataType: STRING
+        defaultValue: "NULL"
+        description: ""
+        name: C_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+  name: customer
+  schema: ""
+  sqlType: Source
+  type: sourceInput
+  version: 1
+type: Node

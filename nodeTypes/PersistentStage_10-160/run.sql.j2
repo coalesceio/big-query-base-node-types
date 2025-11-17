@@ -45,7 +45,7 @@ does not permit copying or modification for any other purpose.
         {% for source in sources %}
 
             /* New Rows That Don't Exist */
-            (SELECT
+            ((SELECT
             {% if config.selectDistinct %}
                 DISTINCT
             {% endif %}
@@ -337,7 +337,7 @@ does not permit copying or modification for any other purpose.
         USING (
 
         {% for source in sources %}
-            ( SELECT
+            (( SELECT
             {% if config.selectDistinct %}
             DISTINCT
             {% endif %}
@@ -358,9 +358,7 @@ does not permit copying or modification for any other purpose.
             {% if config.groupByAll %}
                 GROUP BY ALL
             {% endif %}
-
-             )  
-                
+             ))       
             {% if config.insertStrategy in ['UNION DISTINCT', 'UNION ALL'] and not loop.last %}
                 {{config.insertStrategy}}
             {% endif %}
@@ -459,9 +457,7 @@ does not permit copying or modification for any other purpose.
             {% if config.groupByAll %}
                 GROUP BY ALL
             {% endif %}
-
-            )
-
+            ))
             {% if config.insertStrategy in ['UNION DISTINCT', 'UNION ALL'] and not loop.last %}
                 {{config.insertStrategy}}
             {% endif %}

@@ -59,7 +59,7 @@ operation:
         config: {}
         dataType: STRING
         description: ""
-        name: O_ORDERSTATUS
+        name: O_ORDERSTATUS1
         nullable: true
         sourceColumnReferences:
           - columnReferences:

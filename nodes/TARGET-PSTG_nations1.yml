@@ -1,6 +1,6 @@
 fileVersion: 1
 id: c908087e-6fcc-4791-931e-70ff4b81fcf7
-name: PSTG_nations
+name: PSTG_nations1
 operation:
   config:
     groupByAll: false
@@ -222,9 +222,9 @@ operation:
             nodeName: WRK_nation
         join:
           joinCondition: FROM {{ ref('TARGET', 'WRK_nation') }} `WRK_nation`
-        name: PSTG_nations
+        name: PSTG_nations1
         noLinkRefs: []
-  name: PSTG_nations
+  name: PSTG_nations1
   overrideSQL: false
   schema: ""
   sqlType: "160"

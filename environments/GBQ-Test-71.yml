@@ -1,0 +1,11 @@
+fileVersion: 1
+id: "71"
+mappingDefinitions:
+  SRC:
+    database: cls-qa
+    schema: tpch_sf001
+  TARGET:
+    database: cls-dev-bigquery
+    schema: DE_DEV
+name: GBQ-Test
+type: Environment

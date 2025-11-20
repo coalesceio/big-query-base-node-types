@@ -1,0 +1,196 @@
+fileVersion: 1
+id: 6b1fb60c-e216-4e3e-bd4f-37efb18f8df8
+name: FCT_nation_MS
+operation:
+  config:
+    groupByAll: true
+    insertStrategy: UNION ALL
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Multi Source Test
+  isMultisource: false
+  locationName: TARGET
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests:
+          hasNull: false
+        columnReference:
+          columnCounter: 7ba2b396-bd7e-49f4-979b-eb52817a6603
+          stepCounter: 6b1fb60c-e216-4e3e-bd4f-37efb18f8df8
+        config: {}
+        dataType: INT64
+        description: ""
+        isBusinessKey: true
+        name: N_NATIONKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 05b3d438-cdf6-4c31-857c-c0bfb2ec752d
+                stepCounter: efbc1e53-3496-4e9c-8309-77d2ab635e80
+            transform: ""
+          - columnReferences:
+              - columnCounter: 00b38db5-1258-428f-9f73-ac029bd463a6
+                stepCounter: 059b9c6c-57fc-404a-8c5e-e20bcbf1bc2a
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+        columnReference:
+          columnCounter: a09cf148-cd4e-4731-95ba-b31f129231c7
+          stepCounter: 6b1fb60c-e216-4e3e-bd4f-37efb18f8df8
+        config: {}
+        dataType: STRING
+        description: ""
+        isBusinessKey: true
+        name: N_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 953331fb-6526-47cb-8e23-d44d993661d5
+                stepCounter: efbc1e53-3496-4e9c-8309-77d2ab635e80
+            transform: TRIM(n_name)
+          - columnReferences:
+              - columnCounter: a06bf830-7d53-440b-8e6a-2d370f137d10
+                stepCounter: 059b9c6c-57fc-404a-8c5e-e20bcbf1bc2a
+            transform: ""
+      - appliedColumnTests:
+          hasNull: true
+        columnReference:
+          columnCounter: 67badab7-e7bf-40c1-8f47-40ff3c6058e4
+          stepCounter: 6b1fb60c-e216-4e3e-bd4f-37efb18f8df8
+        config: {}
+        dataType: INT64
+        description: Region - Nation Copy
+        name: N_Region
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1e973b49-0531-4793-b756-0dc29c0b88db
+                stepCounter: efbc1e53-3496-4e9c-8309-77d2ab635e80
+            transform: ""
+          - columnReferences:
+              - columnCounter: 85ba9f7a-6f0b-46a2-b09d-25711c9dea7a
+                stepCounter: 059b9c6c-57fc-404a-8c5e-e20bcbf1bc2a
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+        columnReference:
+          columnCounter: 0666ab79-7add-4e2a-91a2-9f39ae7c45db
+          stepCounter: 6b1fb60c-e216-4e3e-bd4f-37efb18f8df8
+        config: {}
+        dataType: STRING
+        description: ""
+        name: n_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4bd12aaf-4340-4600-8aba-357f308ac3fc
+                stepCounter: efbc1e53-3496-4e9c-8309-77d2ab635e80
+            transform: CONCAT(n_name, ' -> ', n_comment)
+          - columnReferences:
+              - columnCounter: 836c9854-c063-443a-b679-c30cdb4a58b9
+                stepCounter: 059b9c6c-57fc-404a-8c5e-e20bcbf1bc2a
+            transform: UPPER(n_COMMENT)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests:
+          hasNull: false
+        columnReference:
+          columnCounter: 05979680-69ac-4020-89b0-61d7dc70b53a
+          stepCounter: 6b1fb60c-e216-4e3e-bd4f-37efb18f8df8
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests:
+          hasNull: false
+        columnReference:
+          columnCounter: 618b8a54-7eb1-4e48-b8fd-1cfc54b5f25b
+          stepCounter: 6b1fb60c-e216-4e3e-bd4f-37efb18f8df8
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs:
+      - hasNull
+    sourceMapping:
+      - aliases:
+          nation: efbc1e53-3496-4e9c-8309-77d2ab635e80
+        customSQL:
+          customSQL: |-
+            {{ stage('Override Create SQL') }}
+            	CREATE OR REPLACE VIEW {{ ref('TARGET', 'FCT_nation_Override_SS')}} AS (
+            		SELECT 
+             `N_NATIONKEY` AS `N_NATIONKEY`,
+             `N_NAME` AS `N_NAME`,
+             `N_REGIONKEY` AS `N_REGIONKEY`,
+             `N_COMMENT` AS `N_COMMENT`
+             FROM {{ ref('SOURCE', 'nation') }}
+            	)
+        dependencies:
+          - locationName: SOURCE
+            nodeName: nation
+        join:
+          joinCondition: |-
+            FROM {{ ref('SOURCE', 'nation') }} `nation`
+            WHERE `N_NATIONKEY` = 1
+        name: FCT_nation_MS
+        noLinkRefs: []
+      - aliases:
+          NATION_CAPS: 059b9c6c-57fc-404a-8c5e-e20bcbf1bc2a
+        customSQL:
+          customSQL: |-
+            {{ stage('Override Create SQL') }}
+            	CREATE OR REPLACE VIEW {{ ref('TARGET', 'FCT_nation')}} AS (
+            		SELECT 
+             `N_NATIONKEY` AS `N_NATIONKEY`,
+             `N_NAME` AS `N_NAME`,
+             `N_REGIONKEY` AS `N_REGIONKEY`,
+             `N_COMMENT` AS `N_COMMENT`
+             FROM {{ ref('SRC', 'NATION_CAPS') }}
+            	)
+        dependencies:
+          - locationName: SRC
+            nodeName: nation
+          - locationName: SRC
+            nodeName: NATION_CAPS
+        join:
+          joinCondition: |-
+            FROM {{ ref('SRC', 'NATION_CAPS') }} `NATION_CAPS`
+            WHERE `N_NATIONKEY` = 2
+        name: nation_copy
+        noLinkRefs: []
+  name: FCT_nation_MS
+  overrideSQL: true
+  schema: ""
+  sqlType: "162"
+  type: sql
+  version: 1
+type: Node

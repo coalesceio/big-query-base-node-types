@@ -15,7 +15,7 @@ operation:
   description: Multi Source Test
   isMultisource: false
   locationName: TARGET
-  materializationType: view
+  materializationType: table
   metadata:
     appliedNodeTests: []
     columns:
@@ -188,7 +188,7 @@ operation:
         name: nation_copy
         noLinkRefs: []
   name: FCT_nation_MS
-  overrideSQL: true
+  overrideSQL: false
   schema: ""
   sqlType: "162"
   type: sql

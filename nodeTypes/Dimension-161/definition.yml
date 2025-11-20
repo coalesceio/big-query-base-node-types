@@ -123,5 +123,5 @@ metadata:
       dataType: TIMESTAMP
       placement: end
       attributeName: isSystemUpdateDate
-name: Dimension_1.0
+name: Dimension
 type: NodeType

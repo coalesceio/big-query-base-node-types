@@ -234,11 +234,11 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: SRC
+          - locationName: SOURCE
             nodeName: nation
         join:
           joinCondition: |-
-            FROM {{ ref('SRC', 'nation') }} `nation`
+            FROM {{ ref('SOURCE', 'nation') }} `nation`
             WHERE NATION.`N_NATIONKEY` = 2 
         name: DIM_nation_MS
         noLinkRefs: []
@@ -247,10 +247,10 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: SRC
+          - locationName: SOURCE
             nodeName: NATION_CAPS
         join:
-          joinCondition: FROM {{ ref('SRC', 'NATION_CAPS') }} `NATION_CAPS`
+          joinCondition: FROM {{ ref('SOURCE', 'NATION_CAPS') }} `NATION_CAPS`
         name: NEW_SOURCE
         noLinkRefs: []
   name: DIM_nation_MS

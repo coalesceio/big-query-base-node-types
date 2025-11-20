@@ -247,14 +247,14 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: SRC
+          - locationName: SOURCE
             nodeName: nation
-          - locationName: SRC
+          - locationName: SOURCE
             nodeName: region
         join:
           joinCondition: |-
-            FROM {{ ref('SRC', 'nation') }} `nation`
-            INNER JOIN {{ ref('SRC', 'region') }} `region`
+            FROM {{ ref('SOURCE', 'nation') }} `nation`
+            INNER JOIN {{ ref('SOURCE', 'region') }} `region`
             ON `nation`.n_regionkey = `region`.r_regionkey
         name: DIM_nation_region_JOIN_SCD2
         noLinkRefs: []

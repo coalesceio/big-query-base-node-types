@@ -152,14 +152,14 @@ operation:
              `N_NAME` AS `N_NAME`,
              `N_REGIONKEY` AS `N_REGIONKEY`,
              `N_COMMENT` AS `N_COMMENT`
-             FROM {{ ref('SRC', 'nation') }}
+             FROM {{ ref('SOURCE', 'nation') }}
             	)
         dependencies:
-          - locationName: SRC
+          - locationName: SOURCE
             nodeName: nation
         join:
           joinCondition: |-
-            FROM {{ ref('SRC', 'nation') }} `nation`
+            FROM {{ ref('SOURCE', 'nation') }} `nation`
             WHERE `N_NATIONKEY` = 1
         name: FCT_nation_MS
         noLinkRefs: []

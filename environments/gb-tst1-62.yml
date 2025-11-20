@@ -1,5 +1,8 @@
 fileVersion: 1
 id: "62"
-mappingDefinitions: {}
+mappingDefinitions:
+  SOURCE:
+    database: ""
+    schema: ""
 name: gb-tst1
 type: Environment

@@ -204,11 +204,11 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: SRC
+          - locationName: SOURCE
             nodeName: nation
         join:
           joinCondition: |-
-            FROM {{ ref('SRC', 'nation') }} `nation`
+            FROM {{ ref('SOURCE', 'nation') }} `nation`
             WHERE `NATION`.`N_NATIONKEY` = 2
             ORDER BY `NATION`.`N_NATIONKEY`
         name: DIM_nation_SS_SCD2

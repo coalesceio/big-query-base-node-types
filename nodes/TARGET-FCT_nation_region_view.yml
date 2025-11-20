@@ -104,7 +104,7 @@ operation:
           - columnReferences:
               - columnCounter: c6ea0908-d609-497a-8bf7-316a2591bdd2
                 stepCounter: 0218c785-3423-400b-aeb2-180e4b3e2ec7
-            transform: n_
+            transform: ""
       - appliedColumnTests: {}
         columnReference:
           columnCounter: a73c1fcb-a3ad-423b-86ce-dd4a0fd74dd6
@@ -189,7 +189,7 @@ operation:
         name: FCT_nation_region_view
         noLinkRefs: []
   name: FCT_nation_region_view
-  overrideSQL: true
+  overrideSQL: false
   schema: ""
   sqlType: "162"
   type: sql

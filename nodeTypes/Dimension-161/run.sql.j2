@@ -184,7 +184,7 @@ does not permit copying or modification for any other purpose.
 						| rejectattr('isSystemUpdateDate') 
 						| list | length == 0 
 					%}
-						{# Skip Section #}
+				       ){# Skip Section #}
 					{% else %}
 					UNION ALL
 					/* Rows Needing To Be Updated Due To Changes To Non-Type-2 columns

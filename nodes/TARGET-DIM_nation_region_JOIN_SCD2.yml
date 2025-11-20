@@ -9,7 +9,7 @@ operation:
     preSQL: ""
     selectDistinct: false
     testsEnabled: false
-    truncateBefore: false
+    truncateBefore: true
   database: ""
   deployEnabled: true
   description: ""
@@ -73,6 +73,7 @@ operation:
         config: {}
         dataType: INT64
         description: ""
+        isChangeTracking: true
         name: N_REGIONKEY
         nullable: true
         sourceColumnReferences:
@@ -87,6 +88,7 @@ operation:
         config: {}
         dataType: STRING
         description: ""
+        isChangeTracking: true
         name: N_COMMENT
         nullable: true
         sourceColumnReferences:
@@ -101,6 +103,7 @@ operation:
         config: {}
         dataType: INT64
         description: ""
+        isChangeTracking: true
         name: R_REGIONKEY
         nullable: true
         sourceColumnReferences:
@@ -115,6 +118,7 @@ operation:
         config: {}
         dataType: STRING
         description: ""
+        isChangeTracking: true
         name: R_NAME
         nullable: true
         sourceColumnReferences:
@@ -129,6 +133,7 @@ operation:
         config: {}
         dataType: STRING
         description: ""
+        isChangeTracking: true
         name: R_COMMENT
         nullable: true
         sourceColumnReferences:

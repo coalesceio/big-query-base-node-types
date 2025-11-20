@@ -13,9 +13,9 @@ operation:
   database: ""
   deployEnabled: true
   description: Multi Source Test
-  isMultisource: true
+  isMultisource: false
   locationName: TARGET
-  materializationType: table
+  materializationType: view
   metadata:
     appliedNodeTests: []
     columns:
@@ -161,7 +161,7 @@ operation:
           joinCondition: |-
             FROM {{ ref('SRC', 'nation') }} `nation`
             WHERE `N_NATIONKEY` = 1
-        name: nation
+        name: FCT_nation_MS
         noLinkRefs: []
       - aliases:
           NATION_CAPS: 059b9c6c-57fc-404a-8c5e-e20bcbf1bc2a
@@ -188,7 +188,7 @@ operation:
         name: nation_copy
         noLinkRefs: []
   name: FCT_nation_MS
-  overrideSQL: false
+  overrideSQL: true
   schema: ""
   sqlType: "162"
   type: sql

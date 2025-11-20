@@ -1,31 +1,48 @@
 fileVersion: 1
-id: 5f743dbf-c74c-452d-8512-f61551d82fd3
-name: FCT_nation_region_view
+id: 4a62b75e-b438-4b79-91b9-67968f3d419b
+name: DIM_nation_region_JOIN_SCD1
 operation:
   config:
     groupByAll: false
-    insertStrategy: UNION ALL
+    insertStrategy: UNION DISTINCT
     postSQL: ""
     preSQL: ""
-    selectDistinct: true
+    selectDistinct: false
     testsEnabled: false
-    truncateBefore: true
+    truncateBefore: false
   database: ""
   deployEnabled: true
-  description: DESCR
+  description: ""
   isMultisource: false
   locationName: TARGET
-  materializationType: view
+  materializationType: table
   metadata:
     appliedNodeTests: []
     columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c9b549b4-07fe-4c39-a67c-524e08be9869
+          stepCounter: 4a62b75e-b438-4b79-91b9-67968f3d419b
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        isSurrogateKey: true
+        name: DIM_nation_region_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 40a701da-5443-4403-82c9-8cfc8bcbfbec
-          stepCounter: 5f743dbf-c74c-452d-8512-f61551d82fd3
+          columnCounter: a4ddc761-708d-4102-9cd9-650681bb09cc
+          stepCounter: 4a62b75e-b438-4b79-91b9-67968f3d419b
         config: {}
         dataType: INT64
-        description: COL DESdg
+        description: ""
         isBusinessKey: true
         name: N_NATIONKEY
         nullable: true
@@ -36,12 +53,11 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: df572315-4fe6-4e57-95ad-f0a3fd905000
-          stepCounter: 5f743dbf-c74c-452d-8512-f61551d82fd3
+          columnCounter: 76a6fd2b-ee19-4b99-9da0-ee570de8beb8
+          stepCounter: 4a62b75e-b438-4b79-91b9-67968f3d419b
         config: {}
         dataType: STRING
         description: ""
-        isBusinessKey: true
         name: N_NAME
         nullable: true
         sourceColumnReferences:
@@ -51,8 +67,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: b1bbe8b7-b767-4542-9a6d-2d552940babb
-          stepCounter: 5f743dbf-c74c-452d-8512-f61551d82fd3
+          columnCounter: 3a92439b-1b3f-48be-81f9-fdab01029bce
+          stepCounter: 4a62b75e-b438-4b79-91b9-67968f3d419b
         config: {}
         dataType: INT64
         description: ""
@@ -65,8 +81,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 3a1c32a9-7214-4498-91e0-590050323365
-          stepCounter: 5f743dbf-c74c-452d-8512-f61551d82fd3
+          columnCounter: d8427915-f15b-4cbd-a999-46a807ee3685
+          stepCounter: 4a62b75e-b438-4b79-91b9-67968f3d419b
         config: {}
         dataType: STRING
         description: ""
@@ -79,8 +95,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: ca9ff15a-1d6a-46bd-bc83-168a6a2e8840
-          stepCounter: 5f743dbf-c74c-452d-8512-f61551d82fd3
+          columnCounter: fe951273-bd86-4096-a6d9-d026f960c399
+          stepCounter: 4a62b75e-b438-4b79-91b9-67968f3d419b
         config: {}
         dataType: INT64
         description: ""
@@ -93,8 +109,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 87b6394d-9a7c-4731-8cc3-c2f2599ebe8c
-          stepCounter: 5f743dbf-c74c-452d-8512-f61551d82fd3
+          columnCounter: c4b216de-dc92-47d1-ab5b-9d7417654466
+          stepCounter: 4a62b75e-b438-4b79-91b9-67968f3d419b
         config: {}
         dataType: STRING
         description: ""
@@ -104,11 +120,11 @@ operation:
           - columnReferences:
               - columnCounter: c6ea0908-d609-497a-8bf7-316a2591bdd2
                 stepCounter: 0218c785-3423-400b-aeb2-180e4b3e2ec7
-            transform: n_
+            transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: a73c1fcb-a3ad-423b-86ce-dd4a0fd74dd6
-          stepCounter: 5f743dbf-c74c-452d-8512-f61551d82fd3
+          columnCounter: a44c7d3d-c01c-4087-a47a-de3b6303181d
+          stepCounter: 4a62b75e-b438-4b79-91b9-67968f3d419b
         config: {}
         dataType: STRING
         description: ""
@@ -124,8 +140,76 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 0af948a1-28b1-4308-830d-5605a42f7f6c
-          stepCounter: 5f743dbf-c74c-452d-8512-f61551d82fd3
+          columnCounter: 4eb2d299-ed02-4381-9d8b-773e548819e2
+          stepCounter: 4a62b75e-b438-4b79-91b9-67968f3d419b
+        config: {}
+        dataType: INT
+        defaultValue: ""
+        description: ""
+        isSystemVersion: true
+        name: SYSTEM_VERSION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 89c63bbf-0f41-4f2f-bb9e-89471e34e072
+          stepCounter: 4a62b75e-b438-4b79-91b9-67968f3d419b
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        isSystemCurrentFlag: true
+        name: SYSTEM_CURRENT_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a71aca5d-7b7f-4cc5-8f31-98bc663739dc
+          stepCounter: 4a62b75e-b438-4b79-91b9-67968f3d419b
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemStartDate: true
+        name: SYSTEM_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e3cc037b-ccb5-472e-bb7a-29138fce6df1
+          stepCounter: 4a62b75e-b438-4b79-91b9-67968f3d419b
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemEndDate: true
+        name: SYSTEM_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 700af5f7-093e-4256-9ab1-26afc50d0358
+          stepCounter: 4a62b75e-b438-4b79-91b9-67968f3d419b
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -141,8 +225,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: f5f2e7b7-b5d8-44ce-a60c-27b1e9bc497b
-          stepCounter: 5f743dbf-c74c-452d-8512-f61551d82fd3
+          columnCounter: 0b083f5c-5ad2-4a3b-97c4-0b2b50ae0c96
+          stepCounter: 4a62b75e-b438-4b79-91b9-67968f3d419b
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -160,21 +244,7 @@ operation:
           nation: efbc1e53-3496-4e9c-8309-77d2ab635e80
           region: 0218c785-3423-400b-aeb2-180e4b3e2ec7
         customSQL:
-          customSQL: |-
-            {{ stage('Override Create SQL') }}
-            	CREATE OR REPLACE VIEW {{ ref('TARGET', 'FCT_nation_region')}} AS (
-            		SELECT 
-             `N_NATIONKEY` AS `N_NATIONKEY`,
-             `N_NAME` AS `N_NAME`,
-             `N_REGIONKEY` AS `N_REGIONKEY`,
-             `N_COMMENT` AS `N_COMMENT`,
-             `R_REGIONKEY` AS `R_REGIONKEY`,
-             `R_NAME` AS `R_NAME`,
-             `R_COMMENT` AS `R_COMMENT`
-             FROM {{ ref('SRC', 'nation') }}
-            INNER JOIN {{ ref('SRC', 'region') }} `region`
-            ON {{ ref('SRC', 'nation') }}./*COLUMN*/ = `region`./*COLUMN*/
-            	)
+          customSQL: ""
         dependencies:
           - locationName: SRC
             nodeName: nation
@@ -185,13 +255,12 @@ operation:
             FROM {{ ref('SRC', 'nation') }} `nation`
             INNER JOIN {{ ref('SRC', 'region') }} `region`
             ON `nation`.n_regionkey = `region`.r_regionkey
-            WHERE `N_REGIONKEY` = 2
-        name: FCT_nation_region_view
+        name: DIM_nation_region_JOIN_SCD1
         noLinkRefs: []
-  name: FCT_nation_region_view
-  overrideSQL: true
+  name: DIM_nation_region_JOIN_SCD1
+  overrideSQL: false
   schema: ""
-  sqlType: "162"
+  sqlType: "161"
   type: sql
   version: 1
 type: Node

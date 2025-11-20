@@ -2,8 +2,8 @@ fileVersion: 1
 id: "71"
 mappingDefinitions:
   SOURCE:
-    database: ""
-    schema: ""
+    database: cls-qa
+    schema: tpch_sf001
   TARGET:
     database: cls-dev-bigquery
     schema: DE_DEV

@@ -65,6 +65,26 @@ operation:
               - columnCounter: c6602c2c-8907-43b1-92b2-cb5702033b71
                 stepCounter: d6b8973a-a844-4c9a-9230-ae4e82df73b1
             transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5e4a50cd-03b3-4734-b213-83aa88d530d3
+          stepCounter: c4f83564-73f8-4697-b009-64575289d237
+        config: {}
+        dataType: ARRAY<JSON>
+        defaultValue: ""
+        description: ""
+        keyColumnType: None
+        name: details_unest
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: JSON_QUERY_ARRAY(`details`)
+        systemColumnType: None
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:

@@ -91,7 +91,7 @@ operation:
         config: {}
         dataType: DATE
         description: ""
-        name: O_ORDERDATE
+        name: O_ORDERDATE1
         nullable: true
         sourceColumnReferences:
           - columnReferences:

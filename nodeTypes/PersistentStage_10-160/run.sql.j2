@@ -282,15 +282,12 @@ does not permit copying or modification for any other purpose.
                     {% if loop.last %}
                         )
                     {% endif %}
-                {% endfor %}
-                
+                {% endfor %}                
                 {{  get_clause(source.join)  }}
-
                 {% if config.groupByAll %}
                     GROUP BY ALL
                 {% endif %}
-
-             )
+             ))
 
             {% endif %}
 
@@ -457,7 +454,7 @@ does not permit copying or modification for any other purpose.
             {% if config.groupByAll %}
                 GROUP BY ALL
             {% endif %}
-            ))
+            )
             {% if config.insertStrategy in ['UNION DISTINCT', 'UNION ALL'] and not loop.last %}
                 {{config.insertStrategy}}
             {% endif %}

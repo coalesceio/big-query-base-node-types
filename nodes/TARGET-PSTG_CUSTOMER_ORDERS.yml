@@ -78,7 +78,7 @@ operation:
           - columnReferences:
               - columnCounter: dd51f8fa-14b2-4649-a635-8730140b5b99
                 stepCounter: 79db2e7d-146b-42a0-9e07-de853bfddc47
-            transform: ""
+            transform: UPPER(`customer`.`C_ADDRESS`)
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 062af202-b9b8-4f83-94d9-fc2083c113e5

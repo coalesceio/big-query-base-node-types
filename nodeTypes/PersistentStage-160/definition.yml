@@ -117,5 +117,5 @@ metadata:
       dataType: TIMESTAMP
       placement: end
       attributeName: isSystemUpdateDate
-name: Persistent Stage_1.0
+name: Persistent Stage
 type: NodeType

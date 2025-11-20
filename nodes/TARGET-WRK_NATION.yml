@@ -1,6 +1,6 @@
 fileVersion: 1
 id: 0b4482bd-14ee-40a1-86f8-8ea054f04054
-name: WRK_nation
+name: WRK_NATION
 operation:
   config:
     groupByAll: false
@@ -13,12 +13,12 @@ operation:
     postSQL: ""
     preSQL: ""
     selectDistinct: false
-    testsEnabled: true
+    testsEnabled: false
     truncateBefore: true
   database: ""
   deployEnabled: true
   description: ""
-  isMultisource: true
+  isMultisource: false
   locationName: TARGET
   materializationType: table
   metadata:
@@ -118,9 +118,9 @@ operation:
           joinCondition: |-
             FROM {{ ref('SOURCE', 'nation') }} `nation`
             where `N_NATIONKEY` < 5
-        name: WRK_nation
+        name: WRK_NATION
         noLinkRefs: []
-  name: WRK_nation
+  name: WRK_NATION
   overrideSQL: false
   schema: ""
   sqlType: "159"

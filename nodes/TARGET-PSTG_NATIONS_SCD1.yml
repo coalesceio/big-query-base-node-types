@@ -1,6 +1,6 @@
 fileVersion: 1
-id: a680b2ef-5ea3-4298-828e-b88084952833
-name: PSTG_nation
+id: c908087e-6fcc-4791-931e-70ff4b81fcf7
+name: PSTG_NATIONS_SCD1
 operation:
   config:
     groupByAll: false
@@ -24,8 +24,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: c1cd4f06-0d81-4248-a2dc-a573ef112ffd
-          stepCounter: a680b2ef-5ea3-4298-828e-b88084952833
+          columnCounter: 70f85fd9-abde-4c69-a5a6-c5a18fd614c8
+          stepCounter: c908087e-6fcc-4791-931e-70ff4b81fcf7
         config: {}
         dataType: STRING
         defaultValue: ""
@@ -38,8 +38,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 967fe113-1c4d-4d35-be40-fc26c077c952
-          stepCounter: a680b2ef-5ea3-4298-828e-b88084952833
+          columnCounter: e2b94a02-1943-49c2-be3b-5290856b79bb
+          stepCounter: c908087e-6fcc-4791-931e-70ff4b81fcf7
         config: {}
         dataType: INT64
         description: ""
@@ -53,12 +53,11 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 511d2092-dbfd-4520-8680-ec245485bd07
-          stepCounter: a680b2ef-5ea3-4298-828e-b88084952833
+          columnCounter: 9e44a5a4-dc16-4fa6-a4f4-9ea871a16f4f
+          stepCounter: c908087e-6fcc-4791-931e-70ff4b81fcf7
         config: {}
         dataType: STRING
         description: ""
-        isChangeTracking: true
         name: N_NAME
         nullable: true
         sourceColumnReferences:
@@ -68,8 +67,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 5a6c7de8-392f-4726-939e-8f84be4d2537
-          stepCounter: a680b2ef-5ea3-4298-828e-b88084952833
+          columnCounter: 26f30840-2904-4195-90a5-38d857b176ee
+          stepCounter: c908087e-6fcc-4791-931e-70ff4b81fcf7
         config: {}
         dataType: INT64
         description: ""
@@ -82,8 +81,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 834c5ef7-ad88-498c-b2e5-45bc8545a6f7
-          stepCounter: a680b2ef-5ea3-4298-828e-b88084952833
+          columnCounter: e969e22e-8eb5-4979-8885-a453b39c7c91
+          stepCounter: c908087e-6fcc-4791-931e-70ff4b81fcf7
         config: {}
         dataType: STRING
         description: ""
@@ -94,27 +93,13 @@ operation:
               - columnCounter: 26dea3b9-7545-4edc-a79a-d87bf6ef0bf2
                 stepCounter: 0b4482bd-14ee-40a1-86f8-8ea054f04054
             transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 093c4c95-f040-4b3b-bd13-bdca1f7e64dd
-          stepCounter: a680b2ef-5ea3-4298-828e-b88084952833
-        config: {}
-        dataType: STRING
-        description: ""
-        name: GH
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 5867ad31-bb74-481d-a5a7-96ce844afa86
-                stepCounter: 0b4482bd-14ee-40a1-86f8-8ea054f04054
-            transform: ""
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 214c86dc-37df-449d-ab29-66e7e3b4f40d
-          stepCounter: a680b2ef-5ea3-4298-828e-b88084952833
+          columnCounter: d09fa9eb-3c72-45d1-a524-1dd3ac2b20bc
+          stepCounter: c908087e-6fcc-4791-931e-70ff4b81fcf7
         config: {}
         dataType: INT
         defaultValue: ""
@@ -130,8 +115,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 7ebad7dd-6166-4309-aaa4-be3b589d87d7
-          stepCounter: a680b2ef-5ea3-4298-828e-b88084952833
+          columnCounter: d700bb2e-a628-41ff-b083-52c291b3b730
+          stepCounter: c908087e-6fcc-4791-931e-70ff4b81fcf7
         config: {}
         dataType: STRING
         defaultValue: ""
@@ -147,8 +132,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 1a462752-5b7f-473c-a853-62d6178bde3a
-          stepCounter: a680b2ef-5ea3-4298-828e-b88084952833
+          columnCounter: 1eaaaeb2-ad5b-421b-8b0d-75f07d0a71f2
+          stepCounter: c908087e-6fcc-4791-931e-70ff4b81fcf7
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -164,8 +149,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: aad7f4e8-e814-43ff-b85a-b7e625035322
-          stepCounter: a680b2ef-5ea3-4298-828e-b88084952833
+          columnCounter: 346b872e-f81a-4282-82a2-5d773a0b4d98
+          stepCounter: c908087e-6fcc-4791-931e-70ff4b81fcf7
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -181,8 +166,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: d4bbf42b-7eef-4ffc-83cc-8fb868227d87
-          stepCounter: a680b2ef-5ea3-4298-828e-b88084952833
+          columnCounter: aad11b19-f1e7-4627-8f20-91696812763e
+          stepCounter: c908087e-6fcc-4791-931e-70ff4b81fcf7
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -198,8 +183,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: d257d86c-1db2-4643-b596-c13d2bf5096d
-          stepCounter: a680b2ef-5ea3-4298-828e-b88084952833
+          columnCounter: 5efc00a2-cba9-439a-ae84-7f09a66429eb
+          stepCounter: c908087e-6fcc-4791-931e-70ff4b81fcf7
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -219,12 +204,12 @@ operation:
           customSQL: ""
         dependencies:
           - locationName: TARGET
-            nodeName: WRK_nation
+            nodeName: WRK_NATION
         join:
-          joinCondition: FROM {{ ref('TARGET', 'WRK_nation') }} `WRK_nation`
-        name: PSTG_nation
+          joinCondition: FROM {{ ref('TARGET', 'WRK_NATION') }} `WRK_nation`
+        name: PSTG_NATIONS_SCD1
         noLinkRefs: []
-  name: PSTG_nation
+  name: PSTG_NATIONS_SCD1
   overrideSQL: false
   schema: ""
   sqlType: "160"

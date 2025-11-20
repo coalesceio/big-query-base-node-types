@@ -3,13 +3,13 @@ id: e5bec93b-656a-459b-a7cb-eda561a094dc
 name: PSTG_lineitem
 operation:
   config:
-    groupByAll: true
+    groupByAll: false
     insertStrategy: UNION ALL
     postSQL: ""
     preSQL: ""
-    selectDistinct: false
+    selectDistinct: true
     testsEnabled: false
-    truncateBefore: false
+    truncateBefore: true
   database: ""
   deployEnabled: true
   description: ""

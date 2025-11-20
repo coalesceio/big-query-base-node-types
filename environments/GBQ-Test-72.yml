@@ -1,5 +1,8 @@
 fileVersion: 1
 id: "72"
-mappingDefinitions: {}
+mappingDefinitions:
+  SOURCE2:
+    database: ""
+    schema: ""
 name: GBQ-Test
 type: Environment

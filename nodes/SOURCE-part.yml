@@ -1,0 +1,169 @@
+fileVersion: 1
+id: 4a807e0a-d6ca-4fe1-bc8f-b3618bd6c1c9
+name: part
+operation:
+  database: ""
+  deployEnabled: true
+  description: ""
+  locationName: SOURCE
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 57e86ff7-9672-4b17-9fcb-1a107b1fa7a8
+          stepCounter: 4a807e0a-d6ca-4fe1-bc8f-b3618bd6c1c9
+        config: {}
+        dataType: INT64
+        defaultValue: "NULL"
+        description: ""
+        name: P_PARTKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f3bad228-ab97-47e7-8e0b-30850df3e138
+          stepCounter: 4a807e0a-d6ca-4fe1-bc8f-b3618bd6c1c9
+        config: {}
+        dataType: STRING
+        defaultValue: "NULL"
+        description: ""
+        name: P_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 636b80b0-0676-48e3-bb36-f021da2f977e
+          stepCounter: 4a807e0a-d6ca-4fe1-bc8f-b3618bd6c1c9
+        config: {}
+        dataType: STRING
+        defaultValue: "NULL"
+        description: ""
+        name: P_MFGR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8b3f3b2f-6246-43f2-a6b7-5ec1aa6109f0
+          stepCounter: 4a807e0a-d6ca-4fe1-bc8f-b3618bd6c1c9
+        config: {}
+        dataType: STRING
+        defaultValue: "NULL"
+        description: ""
+        name: P_BRAND
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 34c0f919-58ef-4b8b-b0dd-e4a9347fdc48
+          stepCounter: 4a807e0a-d6ca-4fe1-bc8f-b3618bd6c1c9
+        config: {}
+        dataType: STRING
+        defaultValue: "NULL"
+        description: ""
+        name: P_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 73e7ff2a-3674-4bec-84a1-46f2a3edbe38
+          stepCounter: 4a807e0a-d6ca-4fe1-bc8f-b3618bd6c1c9
+        config: {}
+        dataType: INT64
+        defaultValue: "NULL"
+        description: ""
+        name: P_SIZE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 006a6f7c-7ccb-4576-bd01-6d683fae7a6d
+          stepCounter: 4a807e0a-d6ca-4fe1-bc8f-b3618bd6c1c9
+        config: {}
+        dataType: STRING
+        defaultValue: "NULL"
+        description: ""
+        name: P_CONTAINER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d0c2ab80-8c9e-4a3b-8ccb-6a6b36798125
+          stepCounter: 4a807e0a-d6ca-4fe1-bc8f-b3618bd6c1c9
+        config: {}
+        dataType: FLOAT64
+        defaultValue: "NULL"
+        description: ""
+        name: P_RETAILPRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: af82e962-bab4-49d4-a44f-8f621bbf47ca
+          stepCounter: 4a807e0a-d6ca-4fe1-bc8f-b3618bd6c1c9
+        config: {}
+        dataType: STRING
+        defaultValue: "NULL"
+        description: ""
+        name: P_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+  name: part
+  schema: ""
+  sqlType: Source
+  type: sourceInput
+  version: 1
+type: Node

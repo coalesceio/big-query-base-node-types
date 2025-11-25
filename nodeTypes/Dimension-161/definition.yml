@@ -6,7 +6,7 @@ metadata:
   error: null
   nodeMetadataSpec: |
     capitalized: Dimension 
-    short: DIM
+    short: dim
     tagColor: '#1E339A'
     plural: Dimensions
 

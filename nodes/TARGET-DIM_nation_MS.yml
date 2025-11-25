@@ -64,7 +64,7 @@ operation:
         config: {}
         dataType: STRING
         description: ""
-        isChangeTracking: true
+        isBusinessKey: true
         name: N_NAME
         nullable: true
         sourceColumnReferences:
@@ -83,6 +83,7 @@ operation:
         config: {}
         dataType: INT64
         description: ""
+        isChangeTracking: true
         name: N_REGIONKEY
         nullable: true
         sourceColumnReferences:
@@ -101,6 +102,7 @@ operation:
         config: {}
         dataType: STRING
         description: ""
+        isChangeTracking: true
         name: N_COMMENT
         nullable: true
         sourceColumnReferences:

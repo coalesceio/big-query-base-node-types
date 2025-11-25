@@ -6,7 +6,7 @@ metadata:
   error: null
   nodeMetadataSpec: |
     capitalized: View
-    short: V
+    short: vw
     tagColor: '#C4C4C4'
     isDisabled: true
     plural: Views

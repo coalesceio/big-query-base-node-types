@@ -1,8 +1,0 @@
-fileVersion: 1
-id: "62"
-mappingDefinitions:
-  SOURCE2:
-    database: ""
-    schema: ""
-name: gb-tst1
-type: Environment

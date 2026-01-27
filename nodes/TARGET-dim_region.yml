@@ -43,7 +43,7 @@ operation:
         config: {}
         dataType: INT64
         description: ""
-        isChangeTracking: true
+        isBusinessKey: true
         name: R_REGIONKEY
         nullable: true
         sourceColumnReferences:

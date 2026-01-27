@@ -43,6 +43,7 @@ operation:
         config: {}
         dataType: INT64
         description: ""
+        isBusinessKey: true
         name: P_PARTKEY
         nullable: true
         sourceColumnReferences:

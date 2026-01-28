@@ -32,7 +32,7 @@ operation:
         description: ""
         isSurrogateKey: true
         name: dim_part_KEY
-        nullable: false
+        nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: ""

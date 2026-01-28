@@ -132,7 +132,7 @@ operation:
           - columnReferences:
               - columnCounter: c6ea0908-d609-497a-8bf7-316a2591bdd2
                 stepCounter: 0218c785-3423-400b-aeb2-180e4b3e2ec7
-            transform: UPPER(`region`.`R_NAME`)
+            transform: LOWER(`region`.`R_NAME`)
       - appliedColumnTests:
           hasNull: false
         columnReference:

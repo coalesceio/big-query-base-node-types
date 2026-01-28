@@ -1,6 +1,6 @@
 # Coalesce-BigQuery - Base Node Types
 
-## Business Summary
+## Brief Summary
  
 These Node Types transforms raw data into a Single Source of Truth, driving strategic value through four specialized architectural layers:
  
@@ -68,7 +68,7 @@ You can create the node as:
 
 | **Property** | **Description** |
 |---------|-------------|
-| **Multi Source** |Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- `UNION DISTINCT`: Combines with duplicate elimination<br/>- `UNION ALL`: Combines without duplicate elimination<br/>-**False**: Single source node or multiple sources combined using a join |
+| **Multi Source** |Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- `UNION DISTINCT`: Combines sources with duplicate elimination<br/>- `UNION ALL`: Combines sources without duplicate elimination<br/>-**False**: Single source node or multiple sources combined using a join |
 | **Truncate Before** | Toggle: True/False<br/>This determines whether a table will be truncated before data load.<br/> **True**: Truncate table stage gets executed<br/>**False**: Table is appended with data load |
 | **Enable tests** | Toggle: True/False<br/>Determines if column/node data quality tests are enabled |
 | **Distinct** | Toggle: True/False<br/>**True**: Group By All is invisible. `DISTINCT` data is chosen for processing<br/>**False**: Group By All is visible |
@@ -335,7 +335,7 @@ The Dimension node type has two configuration groups:
 | **Options** | **Description** |
 |---------|-------------|
 | **Override Create SQL** | Toggle: True/False<br/>**True**: Customized Create SQL specified in the `Create SQL` space is executed. All other options are invisible except 'Enable Tests'<br/>**False**: Create view SQL based on options chosen are framed and executed |
-| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- `UNION DISTINCT`: Combines with duplicate elimination<br/>- `UNION ALL`: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
+| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- `UNION DISTINCT`: Combines sources with duplicate elimination<br/>- `UNION ALL`: Combines sources without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
 | **Business key** | Required column for both Type 1 and Type 2 Dimensions |
 | **Enable tests** | Toggle: True/False<br/>Determines if node/columns data quality tests are enabled |
 | **Distinct** | Toggle: True/False<br/>**True**: Group By All is invisible. `DISTINCT` data is chosen for processing<br/>**False**: Group By All is visible |
@@ -468,7 +468,7 @@ The Fact node has two configuration groups:
 | **Setting** | **Description** |
 |---------|-------------|
 | **Override Create SQL** | Toggle: True/False<br/>**True**: Customized Create SQL specified in the `Create SQL` space is executed. All other options are invisible except 'Enable Tests'<br/>**False**: Create view SQL based on options chosen are framed and executed |
-| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- `UNION DISTINCT`: Combines with duplicate elimination<br/>- `UNION ALL`: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
+| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- `UNION DISTINCT`: Combines sources with duplicate elimination<br/>- `UNION ALL`: Combines sources without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
 | **Enable tests** | Toggle: True/False<br/>Determines if node/columns data quality tests are enabled |
 | **Distinct** | Toggle: True/False<br/>**True**: Group By All is invisible. `DISTINCT` data is chosen for processing<br/>**False**: Group By All is visible |
 | **Group By All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |

@@ -12,7 +12,7 @@ operation:
     truncateBefore: true
   database: ""
   deployEnabled: true
-  description: ""
+  description: Creates or replaces the DIM_nation_region_JOIN_SCD2 dimension table and truncates it. The node then merges data from the nation and region tables into the dimension table, handling Type 2 Slowly Changing Dimensions (SCD2) by inserting new rows for new versions and updating the current flag and end date for expired versions.
   isMultisource: false
   locationName: TARGET
   materializationType: table
@@ -22,27 +22,29 @@ operation:
       - acceptedValues:
           strictMatch: true
           values: []
-        appliedColumnTests: {}
+        appliedColumnTests:
+          hasNull: false
         columnReference:
           columnCounter: 4a29b0a4-a78d-4ade-9f60-c34ded58f5a4
           stepCounter: 3418f690-efb1-4347-9dbd-5ceafb7c49b0
         config: {}
         dataType: STRING
         defaultValue: ""
-        description: ""
+        description: Surrogate key uniquely identifies each nation and region combination. Used as the primary key for the dimension. Enables efficient joins and lookups in analytical queries. System-generated during the data warehousing process. Simplifies the relationship between nations and regions for reporting and analysis. Not directly sourced from upstream systems. Facilitates historical tracking and data integration across different systems. Supports data quality checks and ensures referential integrity.
         isSurrogateKey: true
         name: DIM_nation_region_KEY
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: true
         columnReference:
           columnCounter: 8217c1a9-2044-41ea-8a83-837015102ef4
           stepCounter: 3418f690-efb1-4347-9dbd-5ceafb7c49b0
         config: {}
         dataType: INT64
-        description: ""
+        description: Business key for the Nation dimension. Represents the unique identifier for each nation. Sourced directly from the Nation table. Used in fact tables to link to the Nation dimension. Enables filtering and grouping of data by nation. Key attribute in various reports, including sales by nation. No transformations applied. Ensures consistent identification of nations across the data warehouse. Part of the primary key along with R_REGIONKEY.
         isBusinessKey: true
         name: N_NATIONKEY
         nullable: true
@@ -51,13 +53,14 @@ operation:
               - columnCounter: 05b3d438-cdf6-4c31-857c-c0bfb2ec752d
                 stepCounter: efbc1e53-3496-4e9c-8309-77d2ab635e80
             transform: ""
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: false
         columnReference:
           columnCounter: 1285dd50-43b7-4970-8e20-f2fce47a4cf9
           stepCounter: 3418f690-efb1-4347-9dbd-5ceafb7c49b0
         config: {}
         dataType: STRING
-        description: ""
+        description: Name of the nation. Provides descriptive context for the nation key. Sourced directly from the Nation table. Used in reports and dashboards to display nation names. Enables users to easily identify and filter data by nation. No transformations applied. Subject to change tracking to capture historical changes in nation names. Supports data quality checks and ensures consistency of nation names. Used in conjunction with N_NATIONKEY for data analysis.
         isChangeTracking: true
         name: N_NAME
         nullable: true
@@ -66,13 +69,14 @@ operation:
               - columnCounter: 953331fb-6526-47cb-8e23-d44d993661d5
                 stepCounter: efbc1e53-3496-4e9c-8309-77d2ab635e80
             transform: ""
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: false
         columnReference:
           columnCounter: c6cba745-4a55-4986-b733-37c846619a9d
           stepCounter: 3418f690-efb1-4347-9dbd-5ceafb7c49b0
         config: {}
         dataType: INT64
-        description: ""
+        description: Foreign key linking the Nation to the Region. Sourced directly from the Nation table. Used to join the Nation dimension with the Region dimension. Enables drill-down analysis from region to nation. Subject to change tracking to capture historical changes in region assignments. Supports data quality checks and ensures referential integrity. Used in conjunction with N_NATIONKEY for data analysis. No transformations applied.
         isChangeTracking: true
         name: N_REGIONKEY
         nullable: true
@@ -81,13 +85,14 @@ operation:
               - columnCounter: 1e973b49-0531-4793-b756-0dc29c0b88db
                 stepCounter: efbc1e53-3496-4e9c-8309-77d2ab635e80
             transform: ""
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: false
         columnReference:
           columnCounter: fcce6856-af07-4f99-933f-a8af4752dd30
           stepCounter: 3418f690-efb1-4347-9dbd-5ceafb7c49b0
         config: {}
         dataType: STRING
-        description: ""
+        description: Descriptive comment about the nation. Sourced directly from the Nation table. Provides additional context for each nation. May contain information about the nation's economy or political situation. Subject to change tracking to capture historical changes in comments. Supports data quality checks and ensures consistency of comments. Not used in calculations or aggregations. Provides additional information for data consumers.
         isChangeTracking: true
         name: N_COMMENT
         nullable: true
@@ -96,13 +101,14 @@ operation:
               - columnCounter: 4bd12aaf-4340-4600-8aba-357f308ac3fc
                 stepCounter: efbc1e53-3496-4e9c-8309-77d2ab635e80
             transform: ""
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: false
         columnReference:
           columnCounter: e15906e8-e0d6-4835-a80e-cfca7207fda1
           stepCounter: 3418f690-efb1-4347-9dbd-5ceafb7c49b0
         config: {}
         dataType: INT64
-        description: ""
+        description: Business key for the Region dimension. Represents the unique identifier for each region. Sourced directly from the Region table. Used in fact tables to link to the Region dimension. Enables filtering and grouping of data by region. Key attribute in various reports, including sales by region. No transformations applied. Ensures consistent identification of regions across the data warehouse. Part of the primary key along with N_NATIONKEY.
         isChangeTracking: true
         name: R_REGIONKEY
         nullable: true
@@ -111,13 +117,14 @@ operation:
               - columnCounter: 27bb521a-bce5-4cb9-b1ae-32a506108606
                 stepCounter: 0218c785-3423-400b-aeb2-180e4b3e2ec7
             transform: ""
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: false
         columnReference:
           columnCounter: ea86473f-d776-4e5b-85c9-6baa3b1b2d45
           stepCounter: 3418f690-efb1-4347-9dbd-5ceafb7c49b0
         config: {}
         dataType: STRING
-        description: ""
+        description: Name of the region. Provides descriptive context for the region key. Sourced directly from the Region table. Used in reports and dashboards to display region names. Enables users to easily identify and filter data by region. No transformations applied. Subject to change tracking to capture historical changes in region names. Supports data quality checks and ensures consistency of region names. Used in conjunction with R_REGIONKEY for data analysis.
         isChangeTracking: true
         name: R_NAME
         nullable: true
@@ -125,14 +132,15 @@ operation:
           - columnReferences:
               - columnCounter: c6ea0908-d609-497a-8bf7-316a2591bdd2
                 stepCounter: 0218c785-3423-400b-aeb2-180e4b3e2ec7
-            transform: ""
-      - appliedColumnTests: {}
+            transform: UPPER(`region`.`R_NAME`)
+      - appliedColumnTests:
+          hasNull: false
         columnReference:
           columnCounter: 66a33292-705f-4221-9f12-4ae9e37a51d2
           stepCounter: 3418f690-efb1-4347-9dbd-5ceafb7c49b0
         config: {}
         dataType: STRING
-        description: ""
+        description: Descriptive comment about the region. Sourced directly from the Region table. Provides additional context for each region. May contain information about the region's economy or political situation. Subject to change tracking to capture historical changes in comments. Supports data quality checks and ensures consistency of comments. Not used in calculations or aggregations. Provides additional information for data consumers.
         isChangeTracking: true
         name: R_COMMENT
         nullable: true
@@ -144,14 +152,15 @@ operation:
       - acceptedValues:
           strictMatch: true
           values: []
-        appliedColumnTests: {}
+        appliedColumnTests:
+          hasNull: false
         columnReference:
           columnCounter: 75c1587d-af38-492b-af65-719f7b9a1d06
           stepCounter: 3418f690-efb1-4347-9dbd-5ceafb7c49b0
         config: {}
         dataType: INT
         defaultValue: ""
-        description: ""
+        description: Tracks the version number of each record in the dimension. Automatically incremented with each change to a record. Used for auditing and data lineage purposes. Enables tracking of changes over time. Not sourced from any upstream system. System-generated during the data warehousing process. Supports data quality checks and ensures data integrity. Used in conjunction with SYSTEM_START_DATE and SYSTEM_END_DATE to track record history.
         isSystemVersion: true
         name: SYSTEM_VERSION
         nullable: true
@@ -161,14 +170,15 @@ operation:
       - acceptedValues:
           strictMatch: true
           values: []
-        appliedColumnTests: {}
+        appliedColumnTests:
+          hasNull: false
         columnReference:
           columnCounter: 18b29ea4-140f-492a-bf28-7abbf2e3ff5f
           stepCounter: 3418f690-efb1-4347-9dbd-5ceafb7c49b0
         config: {}
         dataType: STRING
         defaultValue: ""
-        description: ""
+        description: Indicates whether a record is the most current version. Set to 'Y' for the current record and 'N' for historical records. Used for querying the most up-to-date information. System-generated during the data warehousing process. Not sourced from any upstream system. Simplifies queries by allowing users to filter for current records. Supports data quality checks and ensures data integrity. Used in conjunction with SYSTEM_START_DATE and SYSTEM_END_DATE.
         isSystemCurrentFlag: true
         name: SYSTEM_CURRENT_FLAG
         nullable: true
@@ -178,14 +188,15 @@ operation:
       - acceptedValues:
           strictMatch: true
           values: []
-        appliedColumnTests: {}
+        appliedColumnTests:
+          hasNull: false
         columnReference:
           columnCounter: dd51ebe7-0820-458c-81d9-206e54d41ac2
           stepCounter: 3418f690-efb1-4347-9dbd-5ceafb7c49b0
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
-        description: ""
+        description: Timestamp indicating when a record became active. Automatically generated during the data warehousing process. Used for tracking the history of changes to records. Enables point-in-time analysis. Not sourced from any upstream system. Supports data quality checks and ensures data integrity. Used in conjunction with SYSTEM_END_DATE to define the validity period of a record. Essential for auditing and data lineage purposes.
         isSystemStartDate: true
         name: SYSTEM_START_DATE
         nullable: true
@@ -195,14 +206,15 @@ operation:
       - acceptedValues:
           strictMatch: true
           values: []
-        appliedColumnTests: {}
+        appliedColumnTests:
+          hasNull: false
         columnReference:
           columnCounter: 3e9b7d7c-eca1-437e-a0f9-9b13fcde57b6
           stepCounter: 3418f690-efb1-4347-9dbd-5ceafb7c49b0
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
-        description: ""
+        description: Timestamp indicating when a record became inactive. Defaults to '2999-12-31' for current records. Automatically updated when a record is changed. Used for tracking the history of changes to records. Enables point-in-time analysis. Not sourced from any upstream system. Supports data quality checks and ensures data integrity. Used in conjunction with SYSTEM_START_DATE to define the validity period of a record.
         isSystemEndDate: true
         name: SYSTEM_END_DATE
         nullable: true
@@ -212,14 +224,15 @@ operation:
       - acceptedValues:
           strictMatch: true
           values: []
-        appliedColumnTests: {}
+        appliedColumnTests:
+          hasNull: false
         columnReference:
           columnCounter: 4bb39de6-3687-447b-b060-c8043f2c609f
           stepCounter: 3418f690-efb1-4347-9dbd-5ceafb7c49b0
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
-        description: ""
+        description: Timestamp representing when a record was created in the data warehouse. Used for auditing data changes and tracking data lineage. Automatically generated by the system upon record insertion. Provides a consistent timestamp across all tables for change data capture processes. Not sourced from any upstream system. Essential for incremental data refreshes and debugging data anomalies. Included in all tables to maintain a standardized audit trail. Used in trend analysis reports to understand data growth.
         isSystemCreateDate: true
         name: SYSTEM_CREATE_DATE
         nullable: true
@@ -229,14 +242,15 @@ operation:
       - acceptedValues:
           strictMatch: true
           values: []
-        appliedColumnTests: {}
+        appliedColumnTests:
+          hasNull: false
         columnReference:
           columnCounter: 54dacb66-a9dc-41c8-8bea-f245383b24f9
           stepCounter: 3418f690-efb1-4347-9dbd-5ceafb7c49b0
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
-        description: ""
+        description: Timestamp reflecting the last time a record was modified in the data warehouse. Automatically updated by the system whenever a record is changed. Critical for identifying recent updates and synchronizing data across systems. Not sourced from any upstream system. Facilitates tracking data volatility and identifying stale data. Used in data quality monitoring to detect unexpected changes. Included in all tables to provide a comprehensive audit trail. Supports impact analysis when upstream data sources change.
         isSystemUpdateDate: true
         name: SYSTEM_UPDATE_DATE
         nullable: true
@@ -244,7 +258,8 @@ operation:
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
     cteString: ""
-    enabledColumnTestIDs: []
+    enabledColumnTestIDs:
+      - hasNull
     sourceMapping:
       - aliases:
           nation: efbc1e53-3496-4e9c-8309-77d2ab635e80

@@ -182,7 +182,7 @@ operation:
             FROM {{ ref('SOURCE', 'customer') }} `customer`
             LEFT JOIN {{ ref('SOURCE', 'nation') }} `nation`
             ON `customer`.`C_CUSTKEY` = `nation`.`N_NATIONKEY`
-            WHERE `customer`.`C_NATIONKEY` > 0
+            WHERE `customer`.`C_NATIONKEY` = 1
         name: WRK_customer
         noLinkRefs: []
       - aliases:

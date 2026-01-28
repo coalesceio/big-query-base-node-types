@@ -124,20 +124,6 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: f46aea31-5f15-479d-bf3f-d48f6527a144
-          stepCounter: 391e514f-b3e4-4051-984f-ffdaa97d35d0
-        config: {}
-        dataType: STRING
-        description: ""
-        name: O_CLERK
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 03436bb3-28a1-4133-aa5e-878e9ca3575b
-                stepCounter: 1b4005a4-c1ed-4a28-bbc2-3dc53009cc23
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
           columnCounter: 5a87869d-600e-46dd-8f8c-331137db4a2b
           stepCounter: 391e514f-b3e4-4051-984f-ffdaa97d35d0
         config: {}

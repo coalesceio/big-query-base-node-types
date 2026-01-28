@@ -38,7 +38,7 @@ operation:
           columnCounter: fbd7effe-12ba-4a63-8d50-cc044606f6ea
           stepCounter: f80641d6-a992-4528-96be-022f87510b5f
         config: {}
-        dataType: STRING
+        dataType: STRING(10)
         description: ""
         name: R_NAME
         nullable: true

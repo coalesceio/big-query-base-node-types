@@ -39,7 +39,7 @@ operation:
           stepCounter: df9b92d8-b111-4a7e-ab54-168bb8eb9cab
         config: {}
         dataType: STRING
-        description: ""
+        description: This is the name
         name: P_NAME
         nullable: true
         sourceColumnReferences:

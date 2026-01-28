@@ -1,6 +1,6 @@
-# big-query-base-node-types
+# Coalesce-BigQuery - Base Node Types
 
-### Business Summary
+## Business Summary
  
 These Node Types transforms raw data into a Single Source of Truth, driving strategic value through four specialized architectural layers:
  
@@ -15,8 +15,6 @@ These Node Types transforms raw data into a Single Source of Truth, driving stra
  
 *   **Simplified Access (View):**
     Finally, **Views** act as a user-friendly window into this complex system. Instead of navigating technical tables, business users interact with Views that have been tailored for specific needs—providing secure, easy-to-read, and high-speed access to the exact data required for day-to-day decision-making.
- 
-**The Result:** A scalable, transparent, and historical record of our business that empowers every department to make data-driven decisions with confidence
 
 ---
 
@@ -70,11 +68,11 @@ You can create the node as:
 
 | **Property** | **Description** |
 |---------|-------------|
-| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION DISTINCT**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>-**False**: Single source node or multiple sources combined using a join |
-| **Truncate Before** | Toggle: True/False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is not truncated before data load |
-| **Enable tests** | Toggle: True/False<br/>Determines if tests are enabled |
-| **Distinct** | Toggle: True/False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
-| **Group by All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
+| **Multi Source** |Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- `UNION DISTINCT`: Combines with duplicate elimination<br/>- `UNION ALL`: Combines without duplicate elimination<br/>-**False**: Single source node or multiple sources combined using a join |
+| **Truncate Before** | Toggle: True/False<br/>This determines whether a table will be truncated before data load.<br/> **True**: Truncate table stage gets executed<br/>**False**: Table is appended with data load |
+| **Enable tests** | Toggle: True/False<br/>Determines if column/node data quality tests are enabled |
+| **Distinct** | Toggle: True/False<br/>**True**: Group By All is invisible. `DISTINCT` data is chosen for processing<br/>**False**: Group By All is visible |
+| **Group By All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
 | **Pre-SQL** | SQL to execute before data insert operation |
 | **Post-SQL** | SQL to execute after data insert operation |
 
@@ -85,11 +83,11 @@ You can create the node as:
 
 | **Setting** | **Description** |
 |---------|-------------|
-| **Override Create SQL** | Toggle: True/False<br/>**True**: Customized Create SQL specified in the Create SQL space is executed. All other options are invisible except 'Enable Tests'<br/>**False**: Create view SQL based on options chosen are framed and executed |
-| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION DISTINCT**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
-| **Enable tests** | Toggle: True/False<br/>Determines if tests are enabled |
-| **Distinct** | Toggle: True/False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
-| **Group by All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
+| **Override Create SQL** | Toggle: True/False<br/>**True**: Customized Create SQL specified in the `Create SQL` space is executed. All other options are invisible except 'Enable Tests'<br/>**False**: Create view SQL based on options chosen are framed and executed |
+| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- `UNION DISTINCT`: Combines sources with duplicate elimination<br/>- `UNION ALL`: Combines sources without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
+| **Enable tests** | Toggle: True/False<br/>Determines if node/columns data quality tests are enabled |
+| **Distinct** | Toggle: True/False<br/>**True**: Group By All is invisible. `DISTINCT` data is chosen for processing<br/>**False**: Group By All is visible |
+| **Group By All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
 
 ### Work Joins
 
@@ -98,7 +96,7 @@ Join conditions and other clauses can be specified in the join space next to map
 <img width="520" height="177" alt="image" src="https://github.com/user-attachments/assets/702bec15-97f7-4e92-83ce-6fd60668f977" />
 
 
-> 📘 **Specify Group by Clauses**
+> 📘 **Specify Group By Clauses**
 >
 > You should specify group by clause in this space if you are not opting for the group by all provided in OPTIONS config.
 
@@ -135,9 +133,9 @@ The following stages are executed:
 | **Swap Cloned Table** | Upon successful completion of all updates, the clone replaces the main table ensuring that no data is lost |
 | **Delete Table** | Drops the internal table |
 
-#### Recreating the Work Tables
+#### Metadata Update for the Work Tables
 
-If any of the following change are detected, then the table will be recreated using a CREATE or REPLACE.
+If any of the following change are detected, metadata update stage executes.
 
 * Join clause
 * Adding transformation
@@ -147,8 +145,7 @@ One of the following stages are executed:
 
 | **Stage** | **Description** |
 |-----------|----------------|
-| **Create Table** | Creates a new table |
-| **Replace Table** | Replaces an existing table|
+| **Making metadata updates** | Refreshes metadata |
 
 #### Recreating the Work Views
 
@@ -158,19 +155,18 @@ The following stages are executed:
 
 | **Stage** | **Description** |
 |-----------|----------------|
-| **Delete View** | Removes existing view |
+| **Delete View** | Dropping existing view |
 | **Create View** | Creates new view with updated definition |
 
 ### Work Undeployment
 
 If a Work Node of materialization type table is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher level environment then the WorkTable in the target environment will be dropped.
 
-This is executed in two stages:
+This is executed in below stage:
 
 | **Stage** | **Description** |
 |-----------|----------------|
-| **Delete Table** | Coalesce Internal table is dropped |
-| **Delete Table** | Target table in GBQ is dropped |
+| **Delete Table** | Drops the existing Work Table from target environment |
 
 If a Work Node of materialization type view is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher level environment then the WorkView in the target environment will be dropped.
 
@@ -203,7 +199,7 @@ The Persistent node type has two configuration groups:
 
 | **Property** | **Description** |
 |----------|-------------|
-| **Storage Location** | Storage Location where the WORK will be created |
+| **Storage Location** | Storage Location where the PStage will be created |
 | **Node Type** | Name of template used to create node objects |
 | **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/> If FALSE the node will not be deployed or will be dropped during redeployment |
 
@@ -212,13 +208,13 @@ The Persistent node type has two configuration groups:
 | **Option** | **Description** |
 |---------|-------------|
 | **Create As** | Table is the only option at this time |
-| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION DISTINCT**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
+| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- `UNION DISTINCT`: Combines sources with duplicate elimination<br/>- `UNION ALL`: Combines sources without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
 | **Business key** | Required column for both Type 1 and Type 2. |
 | **Change tracking** | Required column for Type 2 |
-| **Truncate Before** | Toggle: True/False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is not truncated before data load |
-| **Enable tests** | Toggle: True/False<br/>Determines if tests are enabled |
-| **Distinct** | Toggle: True/False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
-| **Group by All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
+| **Truncate Before** | Toggle: True/False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is appended with data load |
+| **Enable tests** | Toggle: True/False<br/>Determines if node/columns data quality tests are enabled |
+| **Distinct** | Toggle: True/False<br/>**True**: Group By All is invisible. `DISTINCT` data is chosen for processing<br/>**False**: Group By All is visible |
+| **Group By All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
 | **Pre-SQL** | SQL to execute before data insert operation |
 | **Post-SQL** | SQL to execute after data insert operation |
 
@@ -228,7 +224,7 @@ Join conditions and other clauses can be specified in the join space next to map
 
 <img width="544" height="216" alt="image" src="https://github.com/user-attachments/assets/fa66147b-32cf-47e3-b9cc-5ef3c3f8613f" />
 
-> 📘 **Specify Group by Clause**
+> 📘 **Specify Group By Clause**
 >
 > You should specify group by clause in this space if you are not opting for the group by all provided in OPTIONS config.
 
@@ -240,7 +236,7 @@ When deployed for the first time into an environment the Persistent node will ex
 
 | **Stage** | **Description** |
 |-----------|----------------|
-| **Create Persistent Table** | This will execute a CREATE OR REPLACE statement and create a table in the target environment |
+| **Create Persistent Table** | This will execute a `CREATE OR REPLACE` statement and create a table in the target environment |
 
 #### Persistent Stage Redeployment
 
@@ -264,9 +260,9 @@ The following stages are executed:
 | **Swap Cloned Table** | Upon successful completion of all updates, the clone replaces the main table ensuring that no data is lost |
 | **Delete Table** | Drops the internal table |
 
-#### Recreating the Persistent Tables
+#### Metadata Update for the Persistent Tables
 
-If any of the following change are detected, then the table will be recreated using a CREATE or REPLACE.
+If any of the following change are detected, metadata update stage executes.
 
 * Join clause
 * Adding transformation
@@ -276,19 +272,18 @@ One of the following stages are executed:
 
 | **Stage** | **Description** |
 |-----------|----------------|
-| **Create Table** | Creates a new table |
-| **Replace Table** | Replaces an existing table|
+| **Making metadata updates** | Refreshes metadata |
 
 ### Persistent Stage Undeployment
 
 If a Persistent Node is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher level environment then the Persistent Table in the target environment will be dropped.
 
-This is executed in two stages:
+This is executed in below stage:
 
 | **Stage** | **Description** |
 |-----------|----------------|
 | **Delete Table** | Drops table |
-| **Drop Table or View** | Removes the table |
+| **Drop View** | Drops view |
 
 ---
 
@@ -311,7 +306,7 @@ The Dimension node type has two configuration groups:
 
 | **Property** | **Description** |
 |----------|-------------|
-| **Storage Location** | Storage Location where the WORK will be created |
+| **Storage Location** | Storage Location where the Dimension will be created |
 | **Node Type** | Name of template used to create node objects |
 | **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/> If FALSE the node will not be deployed or will be dropped during redeployment |
 
@@ -322,16 +317,13 @@ The Dimension node type has two configuration groups:
 | **Options** | **Description** |
 |---------|-------------|
 | **Create As** | Table or View |
-| **Insert Zero Key Record** | Toggle: True/False<br/>Insert Zero Key Record to Dimention<br/>**True**:  Zero Key Record Options enabled.<br/>**False**: Zero Key Record not added|
-| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION DISTINCT**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
+| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- `UNION DISTINCT`: Combines sources with duplicate elimination<br/>- `UNION ALL`: Combines sources without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
 | **Business key** | Required column for both Type 1 and Type 2 Dimensions |
 | **Change tracking** | Required column for Type 2 Dimension |
-| **Truncate Before** | Toggle: True/False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is not truncated before data load |
-| **Enable tests** | Toggle: True/False<br/>Determines if tests are enabled |
-| **Distinct** | Toggle: True/False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
-| **Group by All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
-| **Zero Key Record Options** |Add custom zero key record values for : <br/> -Default Surrogate Key Value<br/>  -Default String Value <br/> -Default Date Value (Date Format DD-MM-YYYY) <br/>-Default Timestamp Value (Timestamp Format YYYY-MM-DD HH24:MI:SS.FF) <br/> -Default Boolean Value|
-| **Advanced Zero Key Record Options** | Toggle: True/False<br/>**True**: Select Columns and the default value of the column for zero key record <br/>**False**: Advanced Zero Key Record Options not enabled|
+| **Truncate Before** | Toggle: True/False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is appended with data load |
+| **Enable tests** | Toggle: True/False<br/>Determines if node/columns data quality tests are enabled |
+| **Distinct** | Toggle: True/False<br/>**True**: Group By All is invisible. `DISTINCT` data is chosen for processing<br/>**False**: Group By All is visible |
+| **Group By All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
 | **Pre-SQL** | SQL to execute before data insert operation |
 | **Post-SQL** | SQL to execute after data insert operation |
 
@@ -342,12 +334,12 @@ The Dimension node type has two configuration groups:
 
 | **Options** | **Description** |
 |---------|-------------|
-| **Override Create SQL** | Toggle: True/False<br/>**True**: Customized Create SQL specified in the Create SQL space is executed. All other options are invisible except 'Enable Tests'<br/>**False**: Create view SQL based on options chosen are framed and executed |
-| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION DISTINCT**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
+| **Override Create SQL** | Toggle: True/False<br/>**True**: Customized Create SQL specified in the `Create SQL` space is executed. All other options are invisible except 'Enable Tests'<br/>**False**: Create view SQL based on options chosen are framed and executed |
+| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- `UNION DISTINCT`: Combines with duplicate elimination<br/>- `UNION ALL`: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
 | **Business key** | Required column for both Type 1 and Type 2 Dimensions |
-| **Enable tests** | Toggle: True/False<br/>Determines if tests are enabled |
-| **Distinct** | Toggle: True/False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
-| **Group by All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
+| **Enable tests** | Toggle: True/False<br/>Determines if node/columns data quality tests are enabled |
+| **Distinct** | Toggle: True/False<br/>**True**: Group By All is invisible. `DISTINCT` data is chosen for processing<br/>**False**: Group By All is visible |
+| **Group By All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
 
 ### Dimension Joins
 
@@ -356,7 +348,7 @@ Join conditions and other clauses can be specified in the join space next to map
 <img width="493" height="187" alt="image" src="https://github.com/user-attachments/assets/7acec890-0e58-47ed-b03d-aa833a08f18a" />
 
 
-> 📘 **Specify Group by Clause**
+> 📘 **Specify Group By Clause**
 >
 > You should specify group by clause in this space if you are not opting for the group by all provided in OPTIONS config.
 
@@ -368,8 +360,8 @@ When deployed for the first time into an environment the Dimension node of mater
 
 | **Stage** | **Description** |
 |-----------|----------------|
-| **Create Dimension Table** | This will execute a CREATE OR REPLACE statement and create a table in the target environment |
-| **Create Dimension View** | This will execute a CREATE OR REPLACE statement and create a view in the target environment |
+| **Create Dimension Table** | This will execute a `CREATE OR REPLACE` statement and create a table in the target environment |
+| **Create Dimension View** | This will execute a `CREATE OR REPLACE` statement and create a view in the target environment |
 
 #### Dimension Redeployment
 
@@ -393,9 +385,9 @@ The following stages are executed:
 | **Swap Cloned Table** | Upon successful completion of all updates, the clone replaces the main table ensuring that no data is lost |
 | **Delete Table** | Drops the internal table |
 
-#### Recreating the Dimension Tables
+#### Metadata Update for the Dimension Tables
 
-If any of the following change are detected, then the table will be recreated using a CREATE or REPLACE.
+If any of the following change are detected, metadata update stage executes.
 
 * Join clause
 * Adding transformation
@@ -405,8 +397,7 @@ One of the following stages are executed:
 
 | **Stage** | **Description** |
 |-----------|----------------|
-| **Create Table** | Creates a new table |
-| **Replace Table** | Replaces an existing table|
+| **Making metadata updates** | Refreshes metadata |
 
 #### Recreating the Dimension Views
 
@@ -420,11 +411,10 @@ Any of the following changes to views will result in deleting and recreating the
 
 If a Dimension Node is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher level environment then the Dimension Table in the target environment will be dropped.
 
-This is executed in two stages:
+This is executed in below stage:
 
 | **Stage** | **Description** |
 |-----------|----------------|
-| **Delete Table** | Coalesce Internal table is dropped |
 | **Delete Table** | Target table in Google BigQuery is dropped |
 
 If a Dimension Node of materialization type view is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher level environment then the Dimension View in the target environment will be dropped.
@@ -454,7 +444,7 @@ The Fact node has two configuration groups:
 
 | **Properties** | **Description** |
 |----------|-------------|
-| **Storage Location** | Storage Location where the WORK will be created |
+| **Storage Location** | Storage Location where the Fact will be created |
 | **Node Type** | Name of template used to create node objects |
 | **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/> If FALSE the node will not be deployed or will be dropped during redeployment |
 
@@ -462,12 +452,12 @@ The Fact node has two configuration groups:
 
 | **Options** | **Description** |
 |---------|-------------|
-| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION DISTINCT**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
+| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- `UNION DISTINCT`: Combines sources with duplicate elimination<br/>- `UNION ALL`: Combines sources without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
 | **Business key** | Required column for Fact table creation.<br/>**Note:** Geometry and Geography data type columns are not supported as business key columns. |
-| **Truncate Before** | Toggle: True/False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is not truncated before data load |
-| **Enable tests** | Toggle: True/False<br/>Determines if tests are enabled |
-| **Distinct** | Toggle: True/False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
-| **Group by All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
+| **Truncate Before** | Toggle: True/False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is appended with data load |
+| **Enable tests** | Toggle: True/False<br/>Determines if node/columns data quality tests are enabled |
+| **Distinct** | Toggle: True/False<br/>**True**: Group By All is invisible. `DISTINCT` data is chosen for processing<br/>**False**: Group By All is visible |
+| **Group By All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
 | **Pre-SQL** | SQL to execute before data insert operation |
 | **Post-SQL** | SQL to execute after data insert operation |
 
@@ -477,11 +467,11 @@ The Fact node has two configuration groups:
 
 | **Setting** | **Description** |
 |---------|-------------|
-| **Override Create SQL** | Toggle: True/False<br/>**True**: Customized Create SQL specified in the Create SQL space is executed. All other options are invisible except 'Enable Tests'<br/>**False**: Create view SQL based on options chosen are framed and executed |
-| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION DISTINCT**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
-| **Enable tests** | Toggle: True/False<br/>Determines if tests are enabled |
-| **Distinct** | Toggle: True/False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
-| **Group by All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
+| **Override Create SQL** | Toggle: True/False<br/>**True**: Customized Create SQL specified in the `Create SQL` space is executed. All other options are invisible except 'Enable Tests'<br/>**False**: Create view SQL based on options chosen are framed and executed |
+| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- `UNION DISTINCT`: Combines with duplicate elimination<br/>- `UNION ALL`: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
+| **Enable tests** | Toggle: True/False<br/>Determines if node/columns data quality tests are enabled |
+| **Distinct** | Toggle: True/False<br/>**True**: Group By All is invisible. `DISTINCT` data is chosen for processing<br/>**False**: Group By All is visible |
+| **Group By All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
 
 ### Fact Joins
 
@@ -489,7 +479,7 @@ Join conditions and other clauses like where, qualify can be specified in the jo
 
 <img width="515" height="163" alt="image" src="https://github.com/user-attachments/assets/d7dc7702-5b57-400f-a1d9-a654024d4f3f" />
 
-> 📘 **Specify Group by Clause**
+> 📘 **Specify Group By Clause**
 >
 > You should specify group by clause in this space if you are not opting for the group by all provided in OPTIONS config.
 
@@ -501,8 +491,8 @@ When deployed for the first time into an environment the Fact node of materializ
 
 | **Stage** | **Description** |
 |-----------|----------------|
-| **Create Fact Table** | This will execute a CREATE OR REPLACE statement and create a table in the target environment |
-| **Create Fact View** | This will execute a CREATE OR REPLACE statement and create a view in the target environment |
+| **Create Fact Table** | This will execute a `CREATE OR REPLACE` statement and create a table in the target environment |
+| **Create Fact View** | This will execute a `CREATE OR REPLACE` statement and create a view in the target environment |
 
 #### Fact Redeployment
 
@@ -527,9 +517,9 @@ The following stages are executed:
 | **Swap Cloned Table** | Upon successful completion of all updates, the clone replaces the main table ensuring that no data is lost |
 | **Delete Table** | Drops the internal table |
 
-#### Recreating the Fact Tables
+#### Metadata Update for the Fact Tables
 
-If any of the following change are detected, then the table will be recreated using a CREATE or REPLACE.
+If any of the following change are detected, metadata update stage executes.
 
 * Join clause
 * Adding transformation
@@ -539,8 +529,7 @@ One of the following stages are executed:
 
 | **Stage** | **Description** |
 |-----------|----------------|
-| **Create Table** | Creates a new table |
-| **Replace Table** | Replaces an existing table|
+| **Making metadata updates** | Refreshes metadata |
 
 #### Recreating the Fact Views
 
@@ -557,11 +546,10 @@ The following stages are executed:
 
 If a Fact Node is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher level environment then the Fact Table in the target environment will be dropped.
 
-This is executed in two stages:
+This is executed in below stage:
 
 | **Stage** | **Description** |
 |-----------|----------------|
-| **Delete Table** | Coalesce Internal table is dropped |
 | **Delete Table** | Target table in Google BigQuery is dropped |
 
 ---
@@ -586,7 +574,7 @@ The View node type has two configuration groups:
 
 | **Properties** | **Description** |
 |----------|-------------|
-| **Storage Location** | Storage Location where the WORK will be created |
+| **Storage Location** | Storage Location where the View will be created |
 | **Node Type** | Name of template used to create node objects |
 | **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/> If FALSE the node will not be deployed or will be dropped during redeployment |
 
@@ -594,16 +582,16 @@ The View node type has two configuration groups:
 
 | **Options** | **Description** |
 |---------|-------------|
-| **Override Create SQL** | Toggle: True/False<br/>**True**: Customized Create SQL specified in the Create SQL space is executed. All other options are invisible<br/>**False**: Create view SQL based on options chosen are framed and executed |
-| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION DISTINCT**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
-| **Distinct** | Toggle: True/False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
-| **Group by All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
+| **Override Create SQL** | Toggle: True/False<br/>**True**: Customized Create SQL specified in the `Create SQL` space is executed. All other options are invisible<br/>**False**: Create view SQL based on options chosen are framed and executed |
+| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- `UNION DISTINCT`: Combines sources with duplicate elimination<br/>- `UNION ALL`: Combines sources without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
+| **Distinct** | Toggle: True/False<br/>**True**: Group By All is invisible. `DISTINCT` data is chosen for processing<br/>**False**: Group By All is visible |
+| **Group By All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
 
 ### View Joins
 
 Join conditions and other clauses like where, qualify can be specified in the join space next to mapping of columns in the Coalesce app.
 
-> 📘 **Specify Group by Clauses**
+> 📘 **Specify Group By Clauses**
 >
 > Best Practice is to specify group by clauses in this space if you are not opting for the group by all provided in OPTIONS config.
 

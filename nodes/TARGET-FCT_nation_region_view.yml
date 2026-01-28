@@ -185,7 +185,7 @@ operation:
             FROM {{ ref('SOURCE', 'nation') }} `nation`
             INNER JOIN {{ ref('SOURCE', 'region') }} `region`
             ON `nation`.n_regionkey = `region`.r_regionkey
-            WHERE `N_REGIONKEY` = 2
+            WHERE `nation`.`N_REGIONKEY` = 2
         name: FCT_nation_region_view
         noLinkRefs: []
   name: FCT_nation_region_view

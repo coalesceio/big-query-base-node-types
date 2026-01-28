@@ -160,7 +160,7 @@ operation:
         join:
           joinCondition: |-
             FROM {{ ref('SOURCE', 'nation') }} `nation`
-            WHERE `N_NATIONKEY` = 1
+            WHERE `nation`.`N_NATIONKEY` = 1
         name: FCT_nation_MS
         noLinkRefs: []
       - aliases:

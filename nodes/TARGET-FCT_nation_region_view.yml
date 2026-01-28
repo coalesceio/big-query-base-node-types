@@ -25,7 +25,7 @@ operation:
           stepCounter: 5f743dbf-c74c-452d-8512-f61551d82fd3
         config: {}
         dataType: INT64
-        description: COL DESdg
+        description: ""
         isBusinessKey: true
         name: N_NATIONKEY
         nullable: true

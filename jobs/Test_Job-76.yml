@@ -1,0 +1,6 @@
+excludeSelector: ""
+fileVersion: 1
+id: "76"
+includeSelector: "{ location: TARGET name: fct_lineitem } OR { location: TARGET name: dim_lineitem } OR { location: SOURCE name: lineitem }"
+name: Test_Job
+type: Job

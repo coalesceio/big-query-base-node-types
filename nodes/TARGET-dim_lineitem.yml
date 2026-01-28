@@ -60,7 +60,7 @@ operation:
         description: ""
         isBusinessKey: true
         name: L_PARTKEY
-        nullable: true
+        nullable: false
         sourceColumnReferences:
           - columnReferences:
               - columnCounter: 75e62e02-990a-4a3a-85ae-02135a6477aa

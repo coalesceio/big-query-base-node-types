@@ -242,7 +242,7 @@ operation:
           - columnReferences:
               - columnCounter: a4b26de5-1d77-4b52-8cc9-1ef8b1042685
                 stepCounter: ecbdf6ea-6f54-45bc-993d-f0da0ce4fd29
-            transform: ""
+            transform: UPPER(`fct_lineitem`.`L_COMMENT`)
       - acceptedValues:
           strictMatch: true
           values: []

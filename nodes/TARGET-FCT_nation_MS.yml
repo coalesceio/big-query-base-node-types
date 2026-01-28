@@ -146,7 +146,7 @@ operation:
         customSQL:
           customSQL: |-
             {{ stage('Override Create SQL') }}
-            	CREATE OR REPLACE VIEW {{ ref('TARGET', 'FCT_nation_MS')}} AS (
+            	CREATE OR REPLACE VIEW {{ ref('TARGET', 'FCT_nation_Override_SS')}} AS (
             		SELECT 
              `N_NATIONKEY` AS `N_NATIONKEY`,
              `N_NAME` AS `N_NAME`,

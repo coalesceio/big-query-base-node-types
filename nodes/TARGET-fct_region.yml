@@ -24,7 +24,7 @@ operation:
           columnCounter: eda3b914-c825-4308-9d63-367802edbd64
           stepCounter: f80641d6-a992-4528-96be-022f87510b5f
         config: {}
-        dataType: INT64
+        dataType: NUMERIC
         description: ""
         name: R_REGIONKEY
         nullable: true
@@ -38,7 +38,7 @@ operation:
           columnCounter: fbd7effe-12ba-4a63-8d50-cc044606f6ea
           stepCounter: f80641d6-a992-4528-96be-022f87510b5f
         config: {}
-        dataType: STRING(10)
+        dataType: STRING
         description: ""
         name: R_NAME
         nullable: true

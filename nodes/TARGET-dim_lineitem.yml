@@ -12,7 +12,7 @@ operation:
     truncateBefore: false
   database: ""
   deployEnabled: true
-  description: ""
+  description: This is table description
   isMultisource: false
   locationName: TARGET
   materializationType: table

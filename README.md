@@ -18,6 +18,26 @@ These Node Types transforms raw data into a Single Source of Truth, driving stra
 
 ---
 
+## Nodetypes Config Matrix
+
+| Category | Feature                         | Dim | Fact | View | Work | PStage |
+|----------|----------------------------------|-----|------|----------|------|--------|
+| Create   | Create As Table                  | ✅  | ✅   | ⬜       | ✅   | ✅     |
+| Create   | Create As View                   | ✅  | ✅   | ⬜       | ✅   | ⬜     |
+| Load     | MultiSource                      | ✅  | ✅   | ✅       | ✅   | ✅     |
+| Load     | Business Key                     | ✅  | ✅   | ⬜       | ⬜   | ✅     |
+| Load     | Last Modified Comparison         | ✅  | ✅   | ⬜       | ⬜   | ✅     |
+| Load     | Change Tracking                  | ✅  | ⬜   | ⬜       | ⬜   | ✅     |
+| Load     | Truncate Before                  | ✅  | ✅   | ✅       | ✅   | ✅     |
+| Load     | Distinct                         | ✅  | ✅   | ✅       | ✅   | ✅     |
+| Load     | Group By All                     | ✅  | ✅   | ✅       | ✅   | ✅     |
+| Load     | Methods                          | MERGE | MERGE<br/>INSERT | ⬜ |INSERT | MERGE<br/>INSERT |
+| Others   | Enable Tests                     | ✅  | ✅   | ⬜       | ✅   | ✅     |
+| Others   | Pre-SQL                          | ✅  | ✅   | ⬜       | ✅   | ✅     |
+| Others   | Post-SQL                         | ✅  | ✅   | ⬜       | ✅   | ✅     |
+
+---
+
 The Coalesce Base Node Types Package includes:
 
 * [Work](#work)
@@ -210,6 +230,9 @@ The Persistent node type has two configuration groups:
 | **Create As** | Table is the only option at this time |
 | **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- `UNION DISTINCT`: Combines sources with duplicate elimination<br/>- `UNION ALL`: Combines sources without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
 | **Business key** | Required column for both Type 1 and Type 2. |
+| **Last Modified Comparison**<br/> | **Toggle**: True/False <br/>- **True**: Enables high-performance Change Data Capture (CDC) by comparing a specific source timestamp or numeric column to identify records that have changed since the last load. <br/>- **False**: Performs standard CDC by comparing data values across all designated Change Tracking columns to detect modifications. |
+| **Treat NULL as Current Timestamp**(For TIMESTAMP Columns) | **Toggle**: True/False <br/>- **True**: Source records with a `NULL` value in the comparison column are assigned the current system timestamp. This ensures that records with missing modification metadata are treated as "new" and are updated in the target table. <br/>- **False**: `NULL` values are handled per standard SQL comparison rules, which may result in these records being ignored during incremental loads. |
+| **Enable SCD Type 2** | Toggle: True/False <br/> **True**: Maintains historical versions of records using system start/end dates and version flags. |
 | **Change tracking** | Required column for Type 2 |
 | **Truncate Before** | Toggle: True/False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is appended with data load |
 | **Enable tests** | Toggle: True/False<br/>Determines if node/columns data quality tests are enabled |
@@ -319,6 +342,9 @@ The Dimension node type has two configuration groups:
 | **Create As** | Table or View |
 | **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- `UNION DISTINCT`: Combines sources with duplicate elimination<br/>- `UNION ALL`: Combines sources without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
 | **Business key** | Required column for both Type 1 and Type 2 Dimensions |
+| **Last Modified Comparison**<br/> | **Toggle**: True/False <br/>- **True**: Enables high-performance Change Data Capture (CDC) by comparing a specific source timestamp or numeric column to identify records that have changed since the last load. <br/>- **False**: Performs standard CDC by comparing data values across all designated Change Tracking columns to detect modifications. |
+| **Treat NULL as Current Timestamp**(For TIMESTAMP Columns) | **Toggle**: True/False <br/>- **True**: Source records with a `NULL` value in the comparison column are assigned the current system timestamp. This ensures that records with missing modification metadata are treated as "new" and are updated in the target table. <br/>- **False**: `NULL` values are handled per standard SQL comparison rules, which may result in these records being ignored during incremental loads. |
+| **Enable SCD Type 2** | Toggle: True/False <br/> **True**: Maintains historical versions of records using system start/end dates and version flags. |
 | **Change tracking** | Required column for Type 2 Dimension |
 | **Truncate Before** | Toggle: True/False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is appended with data load |
 | **Enable tests** | Toggle: True/False<br/>Determines if node/columns data quality tests are enabled |
@@ -454,6 +480,8 @@ The Fact node has two configuration groups:
 |---------|-------------|
 | **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- `UNION DISTINCT`: Combines sources with duplicate elimination<br/>- `UNION ALL`: Combines sources without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
 | **Business key** | Required column for Fact table creation.<br/>**Note:** Geometry and Geography data type columns are not supported as business key columns. |
+| **Last Modified Comparison**<br/> | **Toggle**: True/False <br/>- **True**: Enables high-performance Change Data Capture (CDC) by comparing a specific source timestamp or numeric column to identify records that have changed since the last load. <br/>- **False**: Performs standard CDC by comparing data values across all designated Change Tracking columns to detect modifications. |
+| **Treat NULL as Current Timestamp**(For TIMESTAMP Columns) | **Toggle**: True/False <br/>- **True**: Source records with a `NULL` value in the comparison column are assigned the current system timestamp. This ensures that records with missing modification metadata are treated as "new" and are updated in the target table. <br/>- **False**: `NULL` values are handled per standard SQL comparison rules, which may result in these records being ignored during incremental loads. |
 | **Truncate Before** | Toggle: True/False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is appended with data load |
 | **Enable tests** | Toggle: True/False<br/>Determines if node/columns data quality tests are enabled |
 | **Distinct** | Toggle: True/False<br/>**True**: Group By All is invisible. `DISTINCT` data is chosen for processing<br/>**False**: Group By All is visible |

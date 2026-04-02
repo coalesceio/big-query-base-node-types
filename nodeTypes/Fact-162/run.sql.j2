@@ -29,83 +29,135 @@ does not permit copying or modification for any other purpose.
         {{ stage('Truncate Fact Table') }}
         TRUNCATE TABLE {{ ref_no_link(node.location.name, node.name) }}
     {% endif %}
-        
-    {# == Check if business key is specified  == #}
-    {% set has_business_key = columns | selectattr("isBusinessKey") | list | length > 0 %}    
-        
+
+    {# == List of all business Key value columns Length == #}
+    {%- set businessColList = columns | selectattr('isBusinessKey') | list %}
+    {%- set has_business_key = businessColList | length > 0 %}
+
+    {# == Variable to hold last modified value (date or version) == #}
+    {%- set lastModifiedColumn = config.lastModifiedColumn.name | default('') if config.lastModifiedCompToggle %}
+
+    {# == Variable to hold Now replacement == #}
+    {%- set useCurrentTimeStamp = config.treatNullAsCurrentTimestamp | default(false) if (config.lastModifiedCompToggle and 'TIMESTAMP' in config.lastModifiedColumn.dataType | upper) else false %}
+
     {% if has_business_key %}
 
         {# == Executed if business key is specified  == #}
-        {{ stage('MERGE ' + ' Sources' | string ) }}
+        {{ stage('Load Fact Table Using Merge') }}
         MERGE INTO {{ ref_no_link(node.location.name, node.name) }} `TGT`
-        USING (
-        
-        {% for source in sources %}
-            (SELECT
-            {% if config.selectDistinct %}
-            DISTINCT
-            {% endif %}
-            {% for col in source.columns %}
-                {{ get_source_transform(col) }} AS `{{ col.name }}`
-                {%- if not loop.last %}, {% endif %}
-            {% endfor %}
-            {{ source.join }}
+        USING
+        (
+            {%- for source in sources %}
+                {%- set joinclause= source.join %}
+                {%- set businessColList = source.columns | selectattr('isBusinessKey') | list %}
+                (
+                    SELECT {%- if config.selectDistinct %} DISTINCT {%- endif %}
+                    {%- for col in source.columns %}
+                        {%- if col.name == lastModifiedColumn %}
+                            MAX (`DIM`.`{{lastModifiedColumn}}`) AS MAX_TARGET_VALUE,
+                            {%- if useCurrentTimeStamp %}
+                                COALESCE({{ get_source_transform(col) }}, CURRENT_TIMESTAMP()) AS COMPARISON_VALUE,
+                                COALESCE({{ get_source_transform(col) }}, CURRENT_TIMESTAMP()) AS `{{ col.name }}`
+                            {%- else %}
+                                {{ get_source_transform(col) }} AS COMPARISON_VALUE,
+                                {{ get_source_transform(col) }} AS `{{ col.name }}`
+                            {%- endif %}
+                        {%- else %}
+                            {{ get_source_transform(col) }} AS `{{ col.name }}`
+                        {%- endif %}
+                        {%- if not loop.last %}, {%- endif %}
+                    {%- endfor %}
 
-            {% if config.groupByAll %}
-                GROUP BY ALL
-            {% endif %}
-            )
-            {% if config.insertStrategy in ['UNION DISTINCT', 'UNION ALL'] and not loop.last %}
-                {{config.insertStrategy}}
-            {% endif %}
-        {% endfor %}   
-            )
-            AS `SRC`
-        ON
-        {% for col in columns if col.isBusinessKey -%}
-            {% if not loop.first %}
-                AND
-            {% endif %}
-            `SRC`.`{{ col.name }}` = `TGT`.`{{ col.name }}`
-        {% endfor %}
-        WHEN MATCHED
-        {% for col in columns if not (  col.isBusinessKey or
-                                        col.isSystemUpdateDate or
-                                        col.isSystemCreateDate) %}
-            {% if loop.first %}
-                AND (
-            {% else %}
-                OR
-            {% endif %}
-                `SRC`.`{{ col.name }}` IS DISTINCT FROM `TGT`.`{{ col.name }}`
-            {% if loop.last %}
+                    {{ get_clause(joinclause, 'from') }}
+
+                    {%- if config.lastModifiedCompToggle %}	        
+                        LEFT JOIN {{ ref_no_link(node.location.name, node.name) }} `DIM` ON
+                        {%- for col in source.columns | selectattr('isBusinessKey') | list %}
+                            {%- if not loop.first %}
+                                AND
+                            {%- endif %}
+                           {{ get_source_transform(col) }} = `DIM`.`{{ col.name }}`
+                        {%- endfor %}
+                    {%- endif %}
+
+                    {%- set clause = get_clause(joinclause) %}
+                    {%- if clause %}
+                        {{ ("WHERE " ~ clause.strip()[3:].strip()) if clause.strip().upper().startswith('AND') else clause }}
+                    {%- endif %}
+
+                    {%- if config.groupByAll or config.lastModifiedCompToggle %} GROUP BY ALL {%- endif %}
                 )
-            {% endif %}
-        {% endfor %}
+                {%- if config.insertStrategy in ['UNION DISTINCT', 'UNION ALL'] and not loop.last %}
+                    {{config.insertStrategy}}
+                {%- endif %}
+            {%- endfor %}  
+        ) AS `SRC`
+        ON
+        {%- for col in businessColList %}
+            {%- if not loop.first %}
+                AND
+            {%- endif %}
+            `SRC`.`{{ col.name }}` = `TGT`.`{{ col.name }}`
+        {%- endfor %}
+
+        WHEN MATCHED
+        {%- if not config.lastModifiedCompToggle %}
+            {%- for col in columns if not (col.isBusinessKey or col.isSystemUpdateDate or col.isSystemCreateDate) %}
+                
+                {%- if loop.first %}
+                    AND (
+                {%- else %}
+                    OR
+                {%- endif %}
+                {%- if col.dataType == 'GEOGRAPHY' %}
+                    (
+                        ST_DISTANCE(
+                            CASE
+                                WHEN SRC.`{{ col.name }}` IS NULL THEN ST_GEOGPOINT(0, 0)
+                                ELSE SRC.`{{ col.name }}`
+                            END,
+                            CASE
+                                WHEN TGT.`{{ col.name }}` IS NULL THEN ST_GEOGPOINT(0, 0)
+                                ELSE TGT.`{{ col.name }}`
+                            END
+                        ) > 0
+                    )
+                {%- else %}
+                    `SRC`.`{{ col.name }}` IS DISTINCT FROM `TGT`.`{{ col.name }}`
+                {%- endif %}
+                {%- if loop.last %} ) {%- endif %}
+            {%- endfor %}  
+        {%- else %}
+            AND (`SRC`.COMPARISON_VALUE > `SRC`.MAX_TARGET_VALUE 
+            OR `SRC`.MAX_TARGET_VALUE IS NULL)
+        {%- endif %}
 
         THEN UPDATE SET
         {%- for col in columns if not (col.isBusinessKey or col.isSystemCreateDate) %}
-                `TGT`.`{{ col.name }}` = `SRC`.`{{ col.name }}`
-            {% if not loop.last %}, {% endif %}
-        {% endfor %}
+            `TGT`.`{{ col.name }}` = `SRC`.`{{ col.name }}`
+            {%- if not loop.last %}, {%- endif %}
+        {%- endfor %}
+
         WHEN NOT MATCHED THEN
-        INSERT (
-        {%- for col in columns if not col.isSurrogateKey %}
-            `{{ col.name }}`
-            {% if not loop.last %}, {% endif %}
-        {% endfor -%}
+        INSERT
+        (
+            {%- for col in columns if not col.isSurrogateKey %}
+                `{{ col.name }}`
+                {%- if not loop.last %}, {%- endif %}
+            {%- endfor %}
         )
-        VALUES (
-        {%- for col in columns if not col.isSurrogateKey %}
-            `SRC`.`{{ col.name }}`
-            {% if not loop.last %}, {% endif %}
-        {% endfor -%}
+        VALUES
+        (
+            {%- for col in columns if not col.isSurrogateKey %}
+                `SRC`.`{{ col.name }}`
+                {%- if not loop.last %}, {%- endif %}
+            {%- endfor %}
         )
 
     {% else %}
 
         {# == Executed if business key is not specified  == #}
-        {{ stage('Insert ' + ' Sources' | string ) }}
+        {{ stage('Load Fact Table Using Insert' ) }}
 
             INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
             (

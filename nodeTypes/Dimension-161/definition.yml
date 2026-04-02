@@ -4,7 +4,7 @@ isDisabled: false
 metadata:
   defaultStorageLocation: null
   error: null
-  nodeMetadataSpec: |
+  nodeMetadataSpec: |-
     capitalized: Dimension 
     short: dim
     tagColor: '#1E339A'
@@ -39,9 +39,35 @@ metadata:
       - type: businessKeyColumns
         isRequired: true
 
+      - type: toggleButton
+        attributeName: lastModifiedCompToggle
+        displayName: Last Modified Comparison
+        default: false
+        enableIf: "{% if node.materializationType != 'view' %} true {% else %} false {% endif %}"
+
+      - type: columnDropdownSelector
+        attributeName: lastModifiedColumn
+        displayName: Comparison Source Column* (ℹ️ dataType - TIMESTAMP or NUMERIC)
+        default: ''
+        enableIf: "{% if node.materializationType != 'view' and config.lastModifiedCompToggle %} true {% else %} false {% endif %}"
+
+      - type: toggleButton
+        attributeName: treatNullAsCurrentTimestamp
+        displayName: Treat NULL as Current Timestamp
+        default: false
+        enableIf: "{% if node.materializationType != 'view' 
+                  and config.lastModifiedCompToggle
+                  and ('TIMESTAMP' in config.lastModifiedColumn.dataType | upper) %} true {% else %} false {% endif %}"
+
+      - type: toggleButton
+        attributeName: type2Dimension
+        displayName: Enable SCD Type2
+        default: false
+        enableIf: "{% if node.materializationType != 'view' and config.lastModifiedCompToggle %} true {% else %} false {% endif %}"
+
       - type: changeTrackingColumns
         isRequired: false
-        enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
+        enableIf: "{% if node.materializationType != 'view' and config.lastModifiedCompToggle == false %} true {% else %} false {% endif %}"
 
       - displayName: Truncate Before
         attributeName: truncateBefore
@@ -60,7 +86,6 @@ metadata:
         enableIf: "{% if config.groupByAll or (node.materializationType == 'view' and node.override.create.enabled) %} false {% else %} true {% endif %}"
         default: false
         
-
       - displayName: Group By All
         attributeName: groupByAll
         type: toggleButton
@@ -87,6 +112,7 @@ metadata:
       dataType: STRING
       placement: beginning
       attributeName: isSurrogateKey
+      defaultValue: GENERATE_UUID()
 
     - displayName: system_version
       transform: ''

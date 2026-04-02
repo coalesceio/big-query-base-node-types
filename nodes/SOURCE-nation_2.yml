@@ -1,6 +1,6 @@
 fileVersion: 1
-id: 059b9c6c-57fc-404a-8c5e-e20bcbf1bc2a
-name: NATION_CAPS
+id: 90eeea63-9024-4235-81a2-ddfbe15dc59f
+name: nation_2
 operation:
   database: ""
   deployEnabled: true
@@ -13,11 +13,11 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 00b38db5-1258-428f-9f73-ac029bd463a6
-          stepCounter: 059b9c6c-57fc-404a-8c5e-e20bcbf1bc2a
+          columnCounter: 80f5544a-bb9e-421e-832a-a04517c90c41
+          stepCounter: 90eeea63-9024-4235-81a2-ddfbe15dc59f
         config: {}
         dataType: INT64
-        defaultValue: "NULL"
+        defaultValue: ""
         description: ""
         name: N_NATIONKEY
         nullable: true
@@ -30,11 +30,11 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: a06bf830-7d53-440b-8e6a-2d370f137d10
-          stepCounter: 059b9c6c-57fc-404a-8c5e-e20bcbf1bc2a
+          columnCounter: ce8372a3-3e37-4eae-9ae7-18417f884f45
+          stepCounter: 90eeea63-9024-4235-81a2-ddfbe15dc59f
         config: {}
         dataType: STRING
-        defaultValue: "NULL"
+        defaultValue: ""
         description: ""
         name: N_NAME
         nullable: true
@@ -47,11 +47,11 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 85ba9f7a-6f0b-46a2-b09d-25711c9dea7a
-          stepCounter: 059b9c6c-57fc-404a-8c5e-e20bcbf1bc2a
+          columnCounter: 29196a8a-448a-476e-8fa8-98ce18543a0e
+          stepCounter: 90eeea63-9024-4235-81a2-ddfbe15dc59f
         config: {}
         dataType: INT64
-        defaultValue: "NULL"
+        defaultValue: ""
         description: ""
         name: N_REGIONKEY
         nullable: true
@@ -64,11 +64,11 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 836c9854-c063-443a-b679-c30cdb4a58b9
-          stepCounter: 059b9c6c-57fc-404a-8c5e-e20bcbf1bc2a
+          columnCounter: 7e3bac13-0afa-4e56-ae2f-f9a217307f3c
+          stepCounter: 90eeea63-9024-4235-81a2-ddfbe15dc59f
         config: {}
         dataType: STRING
-        defaultValue: "NULL"
+        defaultValue: ""
         description: ""
         name: N_COMMENT
         nullable: true
@@ -76,7 +76,24 @@ operation:
           - columnReferences: []
             transform: ""
         transform: ""
-  name: NATION_CAPS
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c1e070d7-e4e3-4bc7-b3ce-78d571186115
+          stepCounter: 90eeea63-9024-4235-81a2-ddfbe15dc59f
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        name: last_modified
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+  name: nation_2
   schema: ""
   sqlType: Source
   type: sourceInput

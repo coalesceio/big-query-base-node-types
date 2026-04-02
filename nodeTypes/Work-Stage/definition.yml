@@ -46,7 +46,7 @@ metadata:
       - displayName: Enable Tests
         attributeName: testsEnabled
         type: toggleButton
-        default: false
+        default: true
 
       - displayName: Distinct
         attributeName: selectDistinct

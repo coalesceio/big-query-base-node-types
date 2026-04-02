@@ -4,7 +4,7 @@ isDisabled: false
 metadata:
   defaultStorageLocation: null
   error: null
-  nodeMetadataSpec: |
+  nodeMetadataSpec: |-
     capitalized: Persistent Stage
     short: pst
     plural: Persistent Stages
@@ -20,7 +20,7 @@ metadata:
         isRequired: true
 
       - type: multisourceToggle
-        enableIf: "{% if node.materializationType == 'table' %} true {% else %} false {% endif %}"
+        enableIf: ""
 
       - displayName: Multi Source Strategy
         attributeName: insertStrategy
@@ -30,13 +30,57 @@ metadata:
         - "UNION DISTINCT"
         - "UNION ALL"
         isRequired: false
-        enableIf: "{% if node.materializationType == 'table' and node.isMultisource %} true {% else %} false {% endif %}"
+        enableIf: "{% if node.isMultisource %} true {% else %} false {% endif %}"
+
+      - type: label
+        displayName: ℹ️ Business Key → MERGE, No Business Key → INSERT
+        attributeName: labelBK
+        enableIf: "true"
 
       - type: businessKeyColumns
         isRequired: false
+      
+      - type: toggleButton
+        attributeName: lastModifiedCompToggle
+        displayName: Last Modified Comparison
+        default: false
+        enableIf: "{% if (columns 
+                      | selectattr('isBusinessKey')
+                      | list
+                      | length > 0) %} true {% else %} false {% endif %}"    
+
+      - type: columnDropdownSelector
+        attributeName: lastModifiedColumn
+        displayName: Comparison Source Column* (ℹ️ DataType - TIMESTAMP or NUMERIC)
+        enableIf: " {% if config.lastModifiedCompToggle and (columns 
+                      | selectattr('isBusinessKey')
+                      | list
+                      | length > 0) %} true {% else %} false {% endif %}"
+
+      - type: toggleButton
+        attributeName: treatNullAsCurrentTimestamp
+        displayName: Treat NULL as Current Timestamp
+        default: false
+        enableIf: "{% if config.lastModifiedCompToggle and (columns 
+                      | selectattr('isBusinessKey')
+                      | list
+                      | length > 0) and ('TIMESTAMP' in config.lastModifiedColumn.dataType | upper) %} true {% else %} false {% endif %}"
+
+      - type: toggleButton
+        attributeName: type2Dimension
+        displayName: Enable SCD Type2
+        default: false
+        enableIf: "{% if config.lastModifiedCompToggle and (columns 
+                      | selectattr('isBusinessKey')
+                      | list
+                      | length > 0) %} true {% else %} false {% endif %}"
 
       - type: changeTrackingColumns
         isRequired: false
+        enableIf: "{% if config.lastModifiedCompToggle == false and (columns 
+                      | selectattr('isBusinessKey')
+                      | list
+                      | length > 0) %} true {% else %} false {% endif %}"
 
       - displayName: Truncate Before
         attributeName: truncateBefore
@@ -65,14 +109,14 @@ metadata:
         type: textBox
         syntax: sql
         isRequired: false
-        enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
+        enableIf: ""
 
       - displayName: Post-SQL
         attributeName: postSQL
         type: textBox
         syntax: sql
         isRequired: false
-        enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
+        enableIf: ""
 
     systemColumns:
 
@@ -81,6 +125,7 @@ metadata:
       dataType: STRING
       placement: beginning
       attributeName: isSurrogateKey
+      defaultValue: GENERATE_UUID()
 
     - displayName: system_version
       transform: ''

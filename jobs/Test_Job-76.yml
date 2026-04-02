@@ -1,6 +1,6 @@
 excludeSelector: ""
 fileVersion: 1
 id: "76"
-includeSelector: "{ location: TARGET name: fct_lineitem } OR { location: TARGET name: dim_lineitem } OR { location: SOURCE name: lineitem }"
+includeSelector: "{ location: TARGET name: fct_lineitem } OR { location: TARGET name: dim_lineitem } OR { location: SOURCE name: lineitem } OR { location: \"TARGET\" name: \"dim_nation_MS\" } OR { location: \"TARGET\" name: \"fct_nation_MS\" } OR { location: \"TARGET\" name: \"pst_nation_MS\" } OR { location: \"SOURCE\" name: \"nation_1\" } OR { location: \"SOURCE\" name: \"nation_2\" }"
 name: Test_Job
 type: Job

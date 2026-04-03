@@ -4,7 +4,7 @@ isDisabled: false
 metadata:
   defaultStorageLocation: null
   error: null
-  nodeMetadataSpec: |
+  nodeMetadataSpec: |-
     capitalized: Fact
     plural: Facts
     short: fct
@@ -15,6 +15,7 @@ metadata:
       items:
       - type: materializationSelector
         isRequired: true
+        default: table
         options:
         - table
         - view
@@ -35,9 +36,51 @@ metadata:
         isRequired: false
         enableIf: "{% if not (node.materializationType == 'view' and node.override.create.enabled) and node.isMultisource %} true {% else %} false {% endif %}"
 
+      - type: label
+        displayName: ℹ️ Business Key → MERGE, No Business Key → INSERT
+        attributeName: labelBK
+        enableIf: "true"
+
       - type: businessKeyColumns
         isRequired: false
         enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
+
+      - type: toggleButton
+        attributeName: lastModifiedCompToggle
+        displayName: Last Modified Comparison
+        default: false
+        enableIf: "{% if node.materializationType != 'view'
+                      and (columns 
+                            | selectattr('isBusinessKey')
+                            | list
+                            | length > 0) %} true {% else %} false {% endif %}"
+        
+      - type: columnDropdownSelector
+        attributeName: lastModifiedColumn
+        displayName: Comparison Source Column* (ℹ️ dataType - TIMESTAMP or NUMERIC)
+        default: ''
+        enableIf: "{% if node.materializationType != 'view'
+                    and config.lastModifiedCompToggle 
+                    and (columns 
+                            | selectattr('isBusinessKey')
+                            | list
+                            | length > 0) %} true {% else %} false {% endif %}"
+
+      - type: toggleButton
+        attributeName: treatNullAsCurrentTimestamp
+        displayName: Treat NULL as Current Timestamp
+        default: false
+        enableIf: "{% if node.materializationType != 'view' 
+                  and config.lastModifiedCompToggle
+                  and ('TIMESTAMP' in config.lastModifiedColumn.dataType | upper)
+                  and (columns
+                      | selectattr('isBusinessKey')
+                      | list
+                      | length > 0) %}
+                      true
+                    {% else %} 
+                      false
+                    {% endif %}"
 
       - displayName: Truncate Before
         attributeName: truncateBefore

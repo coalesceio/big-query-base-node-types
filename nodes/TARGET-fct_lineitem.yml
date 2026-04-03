@@ -5,9 +5,13 @@ operation:
   config:
     groupByAll: false
     insertStrategy: UNION ALL
+    lastModifiedColumn:
+      columnCounter: 8ca9ac82-ec09-44c4-ba46-0c54fa14ce4d
+      stepCounter: e9bfbaa8-d376-418d-a388-7c5b87ccac68
+    lastModifiedCompToggle: true
     postSQL: ""
     preSQL: ""
-    selectDistinct: false
+    selectDistinct: true
     testsEnabled: false
     truncateBefore: false
   database: ""
@@ -26,6 +30,7 @@ operation:
         config: {}
         dataType: INT64
         description: ""
+        isBusinessKey: true
         name: L_ORDERKEY
         nullable: true
         sourceColumnReferences:
@@ -292,7 +297,7 @@ operation:
         name: fct_lineitem
         noLinkRefs: []
   name: fct_lineitem
-  overrideSQL: false
+  overrideSQL: true
   schema: ""
   sqlType: "162"
   type: sql

@@ -39,7 +39,7 @@ metadata:
       - type: label
         displayName: ℹ️ Business Key → MERGE, No Business Key → INSERT
         attributeName: labelBK
-        enableIf: "true"
+        enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
 
       - type: businessKeyColumns
         isRequired: false

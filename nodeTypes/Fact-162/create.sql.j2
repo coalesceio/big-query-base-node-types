@@ -21,7 +21,7 @@ does not permit copying or modification for any other purpose.
     (
         {%- for col in columns %}
             `{{ col.name }}` {{ col.dataType }}
-            {%- if col.defaultValue | length > 0 %}DEFAULT {{ col.defaultValue }}{%- endif %}
+            {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{%- endif %}
             {%- if  not col.nullable %} NOT NULL {%- endif %}
             {%- if col.description | length > 0 %} OPTIONS(description="{{ col.description | escape }}"){%- endif %}
             {%- if not loop.last -%}, {%- endif %}
@@ -37,7 +37,7 @@ does not permit copying or modification for any other purpose.
     (
         {%- for col in columns %}
             `{{ col.name }}`
-            {%- if col.description | length > 0 %}OPTIONS(description="{{ col.description | escape }}"){%- endif %}
+            {%- if col.description | length > 0 %} OPTIONS(description="{{ col.description | escape }}"){%- endif %}
             {%- if not loop.last -%},{%- endif %}
         {%- endfor %}
     )

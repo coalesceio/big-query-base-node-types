@@ -58,6 +58,7 @@ operation:
         config: {}
         dataType: STRING
         description: ""
+        isChangeTracking: true
         name: N_NAME
         nullable: true
         sourceColumnReferences:

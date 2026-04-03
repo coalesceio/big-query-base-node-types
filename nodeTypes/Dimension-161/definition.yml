@@ -67,7 +67,7 @@ metadata:
 
       - type: changeTrackingColumns
         isRequired: false
-        enableIf: "{% if node.materializationType != 'view' and config.lastModifiedCompToggle == false %} true {% else %} false {% endif %}"
+        enableIf: "{% if node.materializationType != 'view' and not(config.lastModifiedCompToggle) %} true {% else %} false {% endif %}"
 
       - displayName: Truncate Before
         attributeName: truncateBefore

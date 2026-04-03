@@ -5,11 +5,16 @@ operation:
   config:
     groupByAll: false
     insertStrategy: UNION ALL
+    lastModifiedColumn:
+      columnCounter: 6def310e-799b-4e1b-b8d3-31ff431aa0f8
+      stepCounter: cb71c96b-c3b6-4f05-8e7e-336067fc86d9
+    lastModifiedCompToggle: false
     postSQL: ""
     preSQL: ""
     selectDistinct: false
     testsEnabled: false
     truncateBefore: false
+    type2Dimension: true
   database: ""
   deployEnabled: true
   description: ""
@@ -43,6 +48,7 @@ operation:
         config: {}
         dataType: INT64
         description: ""
+        isBusinessKey: true
         name: L_ORDERKEY
         nullable: true
         sourceColumnReferences:

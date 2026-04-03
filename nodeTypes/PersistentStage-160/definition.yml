@@ -77,7 +77,7 @@ metadata:
 
       - type: changeTrackingColumns
         isRequired: false
-        enableIf: "{% if config.lastModifiedCompToggle == false and (columns 
+        enableIf: "{% if not(config.lastModifiedCompToggle) and (columns 
                       | selectattr('isBusinessKey')
                       | list
                       | length > 0) %} true {% else %} false {% endif %}"

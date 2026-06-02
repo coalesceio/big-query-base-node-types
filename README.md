@@ -8,13 +8,13 @@ These Node Types transforms raw data into a Single Source of Truth, driving stra
     All data begins in the **Work** and **Persistent Stage** areas. Think of this as our quality control and storage hub. Here, raw data is cleaned and organized.
  
 *   **Business Context & Events (Dimension):**
-    To make sense of numbers, we need context. **Dimension** nodes provide the "who, what, where, and why" (e.g., Customer Details, Product Types, Store Locations). More importantly, we use these stages to keep a "historical memory" of the business, tracking how information—like a customer’s address or a product’s category—changes over time, ensuring we never lose sight of our past performance.
+    To make sense of numbers, we need context. **Dimension** nodes provide the "who, what, where, and why" (e.g., Customer Details, Product Types, Store Locations). More importantly, we use these stages to keep a "historical memory" of the business, tracking how information, like a customer’s address or a product’s category, changes over time, ensuring we never lose sight of our past performance.
  
 *   **Performance Metrics (Fact):**
-    The **Fact** nodes are the heartbeat of our reporting. These store the quantitative "how much" of the business—such as total revenue, costs, and profit margins. By combining these facts with our Dimensions, leadership can see exactly how specific regions, products, or time periods are performing.
+    The **Fact** nodes are the heartbeat of our reporting. These store the quantitative "how much" of the business, such as total revenue, costs, and profit margins. By combining these facts with our Dimensions, leadership can see exactly how specific regions, products, or time periods are performing.
  
 *   **Simplified Access (View):**
-    Finally, **Views** act as a user-friendly window into this complex system. Instead of navigating technical tables, business users interact with Views that have been tailored for specific needs—providing secure, easy-to-read, and high-speed access to the exact data required for day-to-day decision-making.
+    Finally, **Views** act as a user-friendly window into this complex system. Instead of navigating technical tables, business users interact with Views that have been tailored for specific needs, providing secure, easy-to-read, and high-speed access to the exact data required for day-to-day decision-making.
 
 ---
 
@@ -72,7 +72,7 @@ The Work node type has two configuration groups:
 |----------|-------------|
 | **Storage Location** | Storage Location where the WORK will be created |
 | **Node Type** | Name of template used to create node objects |
-| **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/> If FALSE the node will not be deployed or will be dropped during redeployment |
+| **Deploy Enabled** | If TRUE the node will be deployed or redeployed when changes are detected<br/> If FALSE the node will not be deployed or will be dropped during redeployment |
 
 #### Work Options
 
@@ -221,7 +221,7 @@ The Persistent node type has two configuration groups:
 |----------|-------------|
 | **Storage Location** | Storage Location where the PStage will be created |
 | **Node Type** | Name of template used to create node objects |
-| **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/> If FALSE the node will not be deployed or will be dropped during redeployment |
+| **Deploy Enabled** | If TRUE the node will be deployed or redeployed when changes are detected<br/> If FALSE the node will not be deployed or will be dropped during redeployment |
 
 #### Persistent Stage Options
 
@@ -331,7 +331,7 @@ The Dimension node type has two configuration groups:
 |----------|-------------|
 | **Storage Location** | Storage Location where the Dimension will be created |
 | **Node Type** | Name of template used to create node objects |
-| **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/> If FALSE the node will not be deployed or will be dropped during redeployment |
+| **Deploy Enabled** | If TRUE the node will be deployed or redeployed when changes are detected<br/> If FALSE the node will not be deployed or will be dropped during redeployment |
 
 #### Dimension Options
 
@@ -472,7 +472,7 @@ The Fact node has two configuration groups:
 |----------|-------------|
 | **Storage Location** | Storage Location where the Fact will be created |
 | **Node Type** | Name of template used to create node objects |
-| **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/> If FALSE the node will not be deployed or will be dropped during redeployment |
+| **Deploy Enabled** | If TRUE the node will be deployed or redeployed when changes are detected<br/> If FALSE the node will not be deployed or will be dropped during redeployment |
 
 #### Fact Options
 
@@ -604,7 +604,7 @@ The View node type has two configuration groups:
 |----------|-------------|
 | **Storage Location** | Storage Location where the View will be created |
 | **Node Type** | Name of template used to create node objects |
-| **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/> If FALSE the node will not be deployed or will be dropped during redeployment |
+| **Deploy Enabled** | If TRUE the node will be deployed or redeployed when changes are detected<br/> If FALSE the node will not be deployed or will be dropped during redeployment |
 
 #### View Options
 

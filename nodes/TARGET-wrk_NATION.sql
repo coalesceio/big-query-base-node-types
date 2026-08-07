@@ -9,6 +9,7 @@
 SELECT
      "N_NATIONKEY" AS "N_NATIONKEY" @nullable("false") @description("Hello") @defaultValue("10") @inHash("1|GH_COL") @tests("unique"),
      "N_NAME" AS "N_NAME" @description("Hello") @defaultValue("NA") @tests("null", "unique") @inHash("2|GH_COL"),
+     "N_REGIONKEY" AS "N_REGIONKEY" @defaultValue(9)  @tests("null", "unique"),
      "N_COMMENT" AS "N_COMMENT" @tests("null"),
      CAST({{ get_hash('GH_COL') }} AS STRING) AS "GH_COL"
 FROM {{ ref('SOURCE2', 'nation') }} `nation`

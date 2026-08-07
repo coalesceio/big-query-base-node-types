@@ -1,5 +1,6 @@
 @id("3dcaefbf-243c-412c-a595-c6b81985d4c7")
 @nodeType("698")
+@selectDistinct(true)
 SELECT
      "id" AS "id" @defaultValue("1"),
      "price" AS "price" @defaultValue("1"),

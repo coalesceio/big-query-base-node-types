@@ -1,0 +1,8 @@
+@id("12451804-cc73-4e95-8ec1-eb04428e6df2")
+@nodeType("698")
+SELECT
+     "N_NATIONKEY" AS "N_NATIONKEY",
+     "N_NAME" AS "N_NAME",
+     "N_REGIONKEY" AS "N_REGIONKEY",
+     "N_COMMENT" AS "N_COMMENT"
+FROM {{ ref('SOURCE', 'NATION') }} `NATION`

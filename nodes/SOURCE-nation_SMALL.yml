@@ -1,0 +1,84 @@
+fileVersion: 1
+id: 976430f1-6b8d-48f0-8e9c-3ae4e895e998
+name: nation_SMALL
+operation:
+  database: ""
+  deployEnabled: true
+  description: ""
+  locationName: SOURCE
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2ac2d7ee-baac-490f-a45d-10922558f259
+          stepCounter: 976430f1-6b8d-48f0-8e9c-3ae4e895e998
+        config: {}
+        dataType: INT64
+        defaultValue: ""
+        description: ""
+        name: n_nationkey
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d55e68fa-d08e-4808-a402-41164dd12d75
+          stepCounter: 976430f1-6b8d-48f0-8e9c-3ae4e895e998
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        name: n_name
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b92e4b19-0aed-4670-8fbb-88715eea4e11
+          stepCounter: 976430f1-6b8d-48f0-8e9c-3ae4e895e998
+        config: {}
+        dataType: INT64
+        defaultValue: ""
+        description: ""
+        name: n_regionkey
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7d312edd-ddbd-49a7-9ddf-cffb70b437e9
+          stepCounter: 976430f1-6b8d-48f0-8e9c-3ae4e895e998
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        name: n_comment
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+  name: nation_SMALL
+  schema: ""
+  sqlType: Source
+  type: sourceInput
+  version: 1
+type: Node

@@ -17,10 +17,10 @@ Coalesce permits you to copy and modify this script for the purposes of using wi
 		{%- for col in columns %}
             {%- set nullParams = col.nullable.parameters | default([]) %}
             {%- set defaultValueParams = col.defaultValue.parameters | default([]) %}
-            {%- set descriptionParams = col.description.parameters | default([]) %}
+            {%- set descriptionParams = col.description.parameters | default([]) %} 
 			`{{ col.name }}` {{ col.dataType }}
-			{%- if nullParams and (nullParams[0] in ['false', false]) %} NOT NULL {%- endif %}
 			{%- if defaultValueParams and defaultValueParams[0] is not none %} DEFAULT {{ get_default(col.dataType, defaultValueParams[0]) }} {%- endif %}
+			{%- if nullParams and (nullParams[0] in ['false', false]) %} NOT NULL {%- endif %}
 			{%- if descriptionParams and descriptionParams[0] | length > 0 %} OPTIONS(description = '{{ descriptionParams[0] | escape }}') {%- endif %}
 			{%- if not loop.last -%}, {%- endif %}
 		{%- endfor %}

@@ -105,7 +105,7 @@ metadata:
 
       - type: note
         attributeName: restrictedEdit
-        displayName: ⛔ The section below is read-only and provided for reference purposes only
+        displayName: ⛔ The section below is read-only and provided for reference purposes only 
         enableIf: "true"
 
       - displayName: Allowed Column Annotations

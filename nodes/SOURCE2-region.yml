@@ -1,11 +1,11 @@
 fileVersion: 1
-id: 976430f1-6b8d-48f0-8e9c-3ae4e895e998
-name: nation_SMALL
+id: c2b6aecf-0e9f-4988-a10b-7c3918bc3d6e
+name: region
 operation:
   database: ""
   deployEnabled: true
   description: ""
-  locationName: SOURCE
+  locationName: SOURCE2
   metadata:
     columns:
       - acceptedValues:
@@ -13,13 +13,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 2ac2d7ee-baac-490f-a45d-10922558f259
-          stepCounter: 976430f1-6b8d-48f0-8e9c-3ae4e895e998
+          columnCounter: 5b91b58f-3a17-44a8-85ee-1fc10c8db306
+          stepCounter: c2b6aecf-0e9f-4988-a10b-7c3918bc3d6e
         config: {}
         dataType: INT64
         defaultValue: ""
         description: ""
-        name: n_nationkey
+        name: R_REGIONKEY
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
@@ -30,13 +30,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: d55e68fa-d08e-4808-a402-41164dd12d75
-          stepCounter: 976430f1-6b8d-48f0-8e9c-3ae4e895e998
+          columnCounter: 1e9e32a4-6b51-4173-85ce-607acf40a409
+          stepCounter: c2b6aecf-0e9f-4988-a10b-7c3918bc3d6e
         config: {}
         dataType: STRING
         defaultValue: ""
         description: ""
-        name: n_name
+        name: R_NAME
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
@@ -47,36 +47,19 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: b92e4b19-0aed-4670-8fbb-88715eea4e11
-          stepCounter: 976430f1-6b8d-48f0-8e9c-3ae4e895e998
-        config: {}
-        dataType: INT64
-        defaultValue: ""
-        description: ""
-        name: n_regionkey
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 7d312edd-ddbd-49a7-9ddf-cffb70b437e9
-          stepCounter: 976430f1-6b8d-48f0-8e9c-3ae4e895e998
+          columnCounter: bf5d8088-d7e3-4cc0-8266-74cf424ba475
+          stepCounter: c2b6aecf-0e9f-4988-a10b-7c3918bc3d6e
         config: {}
         dataType: STRING
         defaultValue: ""
         description: ""
-        name: n_comment
+        name: R_COMMENT
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
         transform: ""
-  name: nation_SMALL
+  name: region
   schema: ""
   sqlType: Source
   type: sourceInput

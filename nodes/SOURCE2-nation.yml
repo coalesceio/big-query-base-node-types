@@ -1,11 +1,11 @@
 fileVersion: 1
-id: 50247218-7c7b-4555-ab39-dfcaf1e76ab2
-name: NATION
+id: bf0c42d4-9f5d-4bfc-a9b0-4641557e0136
+name: nation
 operation:
   database: ""
   deployEnabled: true
   description: ""
-  locationName: SOURCE
+  locationName: SOURCE2
   metadata:
     columns:
       - acceptedValues:
@@ -13,8 +13,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 79365f57-201f-4d2b-9213-8cfb66f8a8ca
-          stepCounter: 50247218-7c7b-4555-ab39-dfcaf1e76ab2
+          columnCounter: 27b49eca-4edc-403d-87ce-4831cebb339a
+          stepCounter: bf0c42d4-9f5d-4bfc-a9b0-4641557e0136
         config: {}
         dataType: INT64
         defaultValue: ""
@@ -30,8 +30,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 60b732bc-5ce9-4bff-b2cd-4dfa9d549dc7
-          stepCounter: 50247218-7c7b-4555-ab39-dfcaf1e76ab2
+          columnCounter: 44e857ed-615c-4425-8909-76f2d6f547ed
+          stepCounter: bf0c42d4-9f5d-4bfc-a9b0-4641557e0136
         config: {}
         dataType: STRING
         defaultValue: ""
@@ -47,8 +47,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 24583992-fbaa-435d-9935-5de4d42f182f
-          stepCounter: 50247218-7c7b-4555-ab39-dfcaf1e76ab2
+          columnCounter: 6fc699b5-f0f7-40b6-a21f-f59ce13a47c2
+          stepCounter: bf0c42d4-9f5d-4bfc-a9b0-4641557e0136
         config: {}
         dataType: INT64
         defaultValue: ""
@@ -64,8 +64,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 841ca458-8273-4f10-872f-48b375ce1b07
-          stepCounter: 50247218-7c7b-4555-ab39-dfcaf1e76ab2
+          columnCounter: 52c065f1-eac0-42b1-b6af-d0ba76f9b920
+          stepCounter: bf0c42d4-9f5d-4bfc-a9b0-4641557e0136
         config: {}
         dataType: STRING
         defaultValue: ""
@@ -76,7 +76,24 @@ operation:
           - columnReferences: []
             transform: ""
         transform: ""
-  name: NATION
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c1497965-ca0a-440c-9885-0f255da90b78
+          stepCounter: bf0c42d4-9f5d-4bfc-a9b0-4641557e0136
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        name: last_modified
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+  name: nation
   schema: ""
   sqlType: Source
   type: sourceInput

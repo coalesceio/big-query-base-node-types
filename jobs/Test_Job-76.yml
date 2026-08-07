@@ -1,6 +1,6 @@
 excludeSelector: ""
 fileVersion: 1
 id: "76"
-includeSelector: "{ location: TARGET name: fct_lineitem } OR { location: TARGET name: dim_lineitem } OR { location: SOURCE name: lineitem }"
+includeSelector: "{ location: TARGET name: fct_lineitem } OR { location: TARGET name: dim_lineitem } OR { location: SOURCE name: lineitem } OR { location: \"SOURCE2\" name: \"all_types_table\" } OR { location: \"SOURCE2\" name: \"customer\" } OR { location: \"SOURCE2\" name: \"lineitem\" } OR { location: \"SOURCE2\" name: \"nation\" } OR { location: \"SOURCE2\" name: \"orders\" } OR { location: \"SOURCE2\" name: \"region\" } OR { location: \"TARGET\" name: \"wrk_all_types_table\" } OR { location: \"TARGET\" name: \"wrk_customer\" } OR { location: \"TARGET\" name: \"wrk_NATION\" }"
 name: Test_Job
 type: Job

@@ -22,7 +22,7 @@ Coalesce permits you to copy and modify this script for the purposes of using wi
 	{# == Truncate data before data insertion  == #}
     {%- if config.truncateBefore %}
         {{ stage('Truncate ' + node.materializationType) }}
-        TRUNCATE IF EXISTS {{ ref_no_link(node.location.name, node.name) }}
+        TRUNCATE TABLE {{ ref_no_link(node.location.name, node.name) }}
     {%- endif %}
 
 	{# == Insert data from sources into Work table  == #}
@@ -38,12 +38,11 @@ Coalesce permits you to copy and modify this script for the purposes of using wi
     (
         SELECT {%- if config.selectDistinct %} DISTINCT {%- endif %}
         {%- for col in sources[0].columns %}
-            {{ get_source_transform_v2(col) }} AS "{{ col.name }}"
+            {{ get_source_transform_v2(col) }} AS `{{ col.name }}`
             {%- if not loop.last -%}, {%- endif %}
         {%- endfor %}
         {{- sources[0].join }}
         {% if config.groupByAll %} GROUP BY ALL {% endif %}
-        {{ sortorder_by_col_v2() }}
     )
 
     {#== Post-SQL ==#}

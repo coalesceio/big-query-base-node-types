@@ -12,7 +12,7 @@ SELECT
      "created_dt" AS "created_dt"  @defaultValue("current_datetime()"),
      "created_ts" AS "created_ts" @defaultValue("current_timestamp()"),
      "json_data" AS "json_data" @defaultValue("JSON '{}'"),
-     "tags" AS "tags",
+     "tags" AS "tags" @nullable(false),
      "scores" AS "scores",
      "geography_data" AS "geography_data" @defaultValue("ST_GEOGPOINT(0, 0)")
 FROM {{ ref('SOURCE2', 'all_types_table') }} `all_types_table`

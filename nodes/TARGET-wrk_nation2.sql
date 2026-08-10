@@ -1,6 +1,5 @@
 @id("3a7050bd-7190-4ad3-9fe5-14080aab89a8")
 @nodeType("698")
-@selectDistinct(true)
 SELECT
      "N_NATIONKEY" AS "N_NATIONKEY",
      "N_NAME" AS "N_NAME",

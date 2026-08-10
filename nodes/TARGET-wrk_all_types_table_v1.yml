@@ -3,7 +3,7 @@ id: c4b7beee-0dac-46fe-a37c-d402fcff3ea3
 name: wrk_all_types_table_v1
 operation:
   config:
-    groupByAll: false
+    groupByAll: true
     insertStrategy: INSERT
     insertStrategy1: UNION DISTINCT
     postSQL: ""

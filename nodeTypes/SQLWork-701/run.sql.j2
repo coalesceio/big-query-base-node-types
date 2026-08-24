@@ -5,7 +5,7 @@ Unauthorized reproduction, distribution, or disclosure of this material is stric
 Coalesce permits you to copy and modify this script for the purposes of using with Coalesce but does not permit copying or modification for any other purpose.  
 #}
 {# == Node Type Name           : SQL Work  == #}
-{# == Node Type Description    : Loads a table with custom SQL logic  == #}
+{# == Node Type Description    : Loads the table with custom SQL logic  == #}
 {#---------------------------------------------------------------------------------------------#}
 
 {# == To run data quality tests before data insertion == #}
@@ -16,13 +16,15 @@ Coalesce permits you to copy and modify this script for the purposes of using wi
     {#== Pre-SQL ==#}
     {%- set ns = namespace(cnt=0) %}
     {%- for sql in config.preSQL %}
-        {%- set ns.cnt = ns.cnt + 1 %}
-        {{ stage('Pre-SQL '  ~ ns.cnt )}}
-        {{ sql.parameters[0] }}
+        {%- if sql is mapping and sql.parameters is defined %}
+            {%- set ns.cnt = ns.cnt + 1 %}
+            {{ stage('Pre-SQL '  ~ ns.cnt )}}
+            {{ sql.parameters[0] }}
+        {%- endif %}
     {%- endfor %}
 
 	{# == Truncate data before data insertion  == #}
-    {%- if config.truncateBefore %}
+    {%- if get_boolean_config("truncateBefore") == "true" %}
         {{ stage('Truncate ' + node.materializationType) }}
         TRUNCATE TABLE {{ ref_no_link(node.location.name, node.name) }}
     {%- endif %}
@@ -49,9 +51,11 @@ Coalesce permits you to copy and modify this script for the purposes of using wi
     {#== Post-SQL ==#}
     {%- set ns = namespace(cnt=0) %}
     {%- for sql in config.postSQL %}
-        {%- set ns.cnt = ns.cnt + 1 %}
-        {{ stage('Post-SQL '  ~ ns.cnt ) }}
-        {{ sql.parameters[0] }}
+        {%- if sql is mapping and sql.parameters is defined %}
+            {%- set ns.cnt = ns.cnt + 1 %}
+            {{ stage('Post-SQL '  ~ ns.cnt ) }}
+            {{ sql.parameters[0] }}
+        {%- endif %}
     {%- endfor %}
 
 {%- else %}

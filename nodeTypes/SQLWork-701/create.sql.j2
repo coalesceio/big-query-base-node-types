@@ -16,7 +16,7 @@ Coalesce permits you to copy and modify this script for the purposes of using wi
 	(
 		{%- for col in columns %}
 			`{{ col.name }}` {{ col.dataType }}
-			{%- if col.defaultValue %} DEFAULT {{ get_default(col.dataType, col.defaultValue) }} {%- endif %}
+			{%- if col.defaultValue %} DEFAULT {{ col.defaultValue }} {%- endif %}
 			{%- if col.nullable == false %} NOT NULL {%- endif %}
 			{%- if col.description | trim | length > 0 %} OPTIONS(description = '{{ col.description | trim | escape }}') {%- endif %}
 			{%- if not loop.last -%}, {%- endif %}

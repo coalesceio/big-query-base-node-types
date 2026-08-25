@@ -30,7 +30,7 @@ metadata:
 
         - name: truncateBefore
           type: boolean
-          description: 𝗧𝗥𝗨𝗡��𝗔𝗧𝗘 the target table before inserting. 𝗜𝗴𝗻𝗼𝗿𝗲𝗱 𝗼𝗻 𝘃𝗶𝗲𝘄𝘀.
+          description: 𝗧𝗥𝗨𝗡𝗖𝗔𝗧𝗘 the target table before inserting. 𝗜𝗴𝗻𝗼𝗿𝗲𝗱 𝗼𝗻 𝘃𝗶𝗲𝘄𝘀.
           isRequired: false      
           default: true
 

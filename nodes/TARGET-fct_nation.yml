@@ -15,7 +15,7 @@ operation:
     truncateBefore: false
   database: ""
   deployEnabled: true
-  description: ""
+  description: fact table
   isMultisource: false
   locationName: TARGET
   materializationType: table
@@ -28,7 +28,7 @@ operation:
           stepCounter: b27b01df-f939-4680-950a-97a7c3861136
         config: {}
         dataType: INT64
-        description: ""
+        description: nationkey
         name: N_NATIONKEY
         nullable: true
         sourceColumnReferences:

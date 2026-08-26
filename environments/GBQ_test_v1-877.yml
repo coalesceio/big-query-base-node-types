@@ -1,0 +1,14 @@
+fileVersion: 1
+id: "877"
+mappingDefinitions:
+  SOURCE:
+    database: cls-dev-bigquery
+    schema: DE_SRC
+  SOURCE2:
+    database: cls-dev-bigquery
+    schema: DE_TGT
+  TARGET:
+    database: cls-dev-bigquery
+    schema: DE_DEV
+name: GBQ_test_v1
+type: Environment

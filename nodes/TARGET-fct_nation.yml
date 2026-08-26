@@ -52,20 +52,6 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 809d61dc-7386-41eb-a7ee-2cf3a8e32976
-          stepCounter: b27b01df-f939-4680-950a-97a7c3861136
-        config: {}
-        dataType: INT64
-        description: ""
-        name: N_REGIONKEY
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: b013673b-a1d3-4e29-84a0-a5d323447b8e
-                stepCounter: 194895cf-4dbc-4d01-9634-e2e0bf9106e5
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
           columnCounter: 8f19e997-1ee8-4e27-b4f8-aa8d2100a2d7
           stepCounter: b27b01df-f939-4680-950a-97a7c3861136
         config: {}

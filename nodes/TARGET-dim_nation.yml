@@ -75,7 +75,7 @@ operation:
         config: {}
         dataType: INT64
         description: ""
-        name: N_REGIONKEY
+        name: N_REGIONKEY1
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -212,6 +212,26 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: cdc2df6a-d0a7-4d22-9a8d-f9290ff2fe22
+          stepCounter: d3ff21a3-4717-45c2-95b0-37267531c976
+        config: {}
+        dataType: string
+        defaultValue: ""
+        description: ""
+        keyColumnType: None
+        name: newc
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: "'s'"
+        systemColumnType: None
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:

@@ -108,7 +108,7 @@ operation:
         dataType: TIMESTAMP
         description: ""
         name: last_modified
-        nullable: true
+        nullable: false
         sourceColumnReferences:
           - columnReferences:
               - columnCounter: eb538d5f-1b0c-4a30-82e8-43d6974e8ca6

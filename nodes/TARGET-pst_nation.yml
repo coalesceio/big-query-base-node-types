@@ -92,9 +92,9 @@ operation:
           stepCounter: 36ac2067-2fbe-4a17-b508-b605724140fa
         config: {}
         dataType: STRING
-        description: ""
+        description: "'Comment'"
         name: N_COMMENT
-        nullable: true
+        nullable: false
         sourceColumnReferences:
           - columnReferences:
               - columnCounter: 1645c20e-a011-4c9b-8311-bc77cd79418c

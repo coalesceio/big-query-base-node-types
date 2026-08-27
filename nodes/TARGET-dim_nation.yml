@@ -232,6 +232,26 @@ operation:
                 stepCounter: "0"
             transform: "'s'"
         systemColumnType: None
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4699e8cd-e798-4187-bc44-7c8d1de1ab0e
+          stepCounter: d3ff21a3-4717-45c2-95b0-37267531c976
+        config: {}
+        dataType: string
+        defaultValue: ""
+        description: "'Column added'"
+        keyColumnType: None
+        name: newcol
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: "'s1'"
+        systemColumnType: None
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:

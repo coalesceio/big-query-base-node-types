@@ -216,6 +216,26 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e32809c4-280c-4ac8-8c0c-71cb0689fd1d
+          stepCounter: 36ac2067-2fbe-4a17-b508-b605724140fa
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: "'New'"
+        keyColumnType: None
+        name: new_col
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: ""
+        systemColumnType: None
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:

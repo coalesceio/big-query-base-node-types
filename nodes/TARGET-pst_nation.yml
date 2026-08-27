@@ -106,7 +106,7 @@ operation:
           stepCounter: 36ac2067-2fbe-4a17-b508-b605724140fa
         config: {}
         dataType: TIMESTAMP
-        description: ""
+        description: "'Last Modified'"
         name: last_modified
         nullable: false
         sourceColumnReferences:

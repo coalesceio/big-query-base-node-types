@@ -58,7 +58,7 @@ operation:
         dataType: STRING
         description: ""
         name: N_COMMENT
-        nullable: true
+        nullable: false
         sourceColumnReferences:
           - columnReferences:
               - columnCounter: 1645c20e-a011-4c9b-8311-bc77cd79418c

@@ -1,5 +1,14 @@
 fileVersion: 1
 id: "681"
-mappingDefinitions: {}
+mappingDefinitions:
+  SOURCE:
+    database: cls-dev-bigquery
+    schema: DE_SRC
+  SOURCE2:
+    database: cls-dev-bigquery
+    schema: DE_QA
+  TARGET:
+    database: cls-dev-bigquery
+    schema: DE_QA_TAN
 name: GBQ_Test_QA_1
 type: Environment

@@ -72,7 +72,7 @@ operation:
         config: {}
         dataType: STRING
         description: ""
-        name: N_COMMENT
+        name: N_COMMENT1
         nullable: true
         sourceColumnReferences:
           - columnReferences:
